@@ -114,14 +114,6 @@ mat-card-subtitle {
   width: 100%;
 }
 
-/*mat-paginator {
-  background-color: #1BA098;
-  width: 35vw;
-  margin: 30px auto;
-  color: white;
-  border-radius: 25px;
-}*/
-
 .small-view-details {
   border-radius: 25px;
 }
@@ -147,4 +139,15 @@ mat-card-subtitle {
   background-position: center;
   border: 2px solid #FDEE30;
   border-radius: 25px;
+}
+
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+}
+
+.notes-stars {
+  color: #FDEE30;
 }

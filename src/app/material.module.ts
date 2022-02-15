@@ -20,8 +20,6 @@ const MaterialComponents = [
   MatToolbarModule,
 ];
 
-
-
 @NgModule({
   declarations: [],
  imports: [
