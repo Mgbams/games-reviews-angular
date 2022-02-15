@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { GameDescriptionComponent } from './game-description/game-description.component';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,
