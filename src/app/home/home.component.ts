@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-home',
