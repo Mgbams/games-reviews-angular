@@ -1,0 +1,24 @@
+mat-toolbar {
+    background-color: #1D2228 !important;
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    padding: 0px 40px;
+   
+}
+
+nav {
+    position: sticky;
+    top: 0px;
+    z-index: 999;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 20vw;
+}
+
+.mat-button, .mat-stroked-button {
+    border: 1px solid white;
+} 

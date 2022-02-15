@@ -21,9 +21,9 @@ mat-icon {
 }
 
 footer {
-    /*background-color: #2d323d;*/
     background-color: #1D2228;
     color: white;
+    margin-top: 70px;
 }
 
 .footer-lang {
@@ -40,6 +40,8 @@ footer {
 
 mat-divider {
     background-color: whitesmoke;
+    width: 40vw;
+    margin: auto;
 }
 
 h4 {

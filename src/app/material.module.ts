@@ -6,6 +6,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 
 const MaterialComponents = [
   MatButtonToggleModule,
@@ -15,6 +17,7 @@ const MaterialComponents = [
   MatPaginatorModule,
   MatDividerModule,
   MatIconModule,
+  MatToolbarModule,
 ];
 
 
