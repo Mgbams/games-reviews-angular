@@ -8,6 +8,7 @@ import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator'
 })
 export class HomeComponent implements OnInit {
 
+  public coucou!: string;
   constructor() { }
 
   ngOnInit(): void {
