@@ -13,11 +13,10 @@
 
 .welcome-page-title {
   width: 40vw;
-
 }
 
 .welcome-page-title h1 {
-  color: #FDEE30;
+  color: #fdee30;
   text-align: center;
 }
 
@@ -33,11 +32,7 @@ mat-grid-list {
 }
 
 .left-img {
-  border-left: 5px solid #FDEE30;
-}
-
-mat-grid-tile {
-  background-color: green;
+  border-left: 5px solid #fdee30;
 }
 
 mat-card-title-group {
@@ -46,10 +41,7 @@ mat-card-title-group {
   width: 100%;
 }
 
-mat-card-title-group div:first-child {
-  width: 100% !important;
-  border: 2px solid yellow !important;
-}
+
 
 mat-card-title-group div img {
   width: 100%;
@@ -66,8 +58,9 @@ mat-card-title-group div:nth-child(2) {
   flex-direction: column;
 }
 
-mat-card, .mat-card {
-  background-color: #1D2228;
+mat-card,
+.mat-card {
+  background-color: #1d2228;
   color: white;
 }
 
@@ -93,8 +86,8 @@ mat-card-subtitle {
 
 .home-page-game-lists {
   text-align: center;
-  font-size: 1.6rem;
-  background-color: #1BA098;
+  font-size: 2vw;
+  background-color: #1ba098;
   padding: 12px 0px;
   width: 35vw;
   margin: 30px auto;
@@ -127,7 +120,8 @@ mat-card-subtitle {
   position: relative;
 }
 
-.left-img p , .right-img p{
+.left-img p,
+.right-img p {
   width: 15vw;
   position: absolute;
   left: 10px;
@@ -137,17 +131,38 @@ mat-card-subtitle {
 .right-img {
   background-image: url("https://images.unsplash.com/photo-1627855437629-62b298df7542?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=982&q=80");
   background-position: center;
-  border: 2px solid #FDEE30;
+  border: 2px solid #fdee30;
   border-radius: 25px;
 }
 
+.notes-stars {
+  color: #fdee30;
+}
 
-mat-card-actions {
+mat-grid-tile {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.img {
+  height: 250px;
+  width: auto;
+}
+
+.mat-card-actions {
+  width: 25vw !important;
   display: flex;
   justify-content: space-between;
-  width: 95%;
 }
 
-.notes-stars {
-  color: #FDEE30;
+@media screen and (max-width: 700px) {
+  .home-page-game-lists, .left-img p, .right-img p {
+    font-size: 14px;
+  }
 }
+

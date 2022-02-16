@@ -21,130 +21,188 @@
 
 <h3 class="home-page-game-lists">NEW GAMES IN THE BLOCK</h3>
 
-<div>
-  <mat-grid-list cols="12" rowHeight="100px" gutterSize="20">
-    <mat-grid-tile colspan="4" rowspan="3">
-      <mat-card class="first-card">
+<div class="grid-container">
+  <mat-grid-list [cols]="(cardsLayout | async)?.gridColumns" rowHeight="350px">
+    <mat-grid-tile
+      [colspan]="(cardsLayout | async)?.cols"
+     
+    >
+      <mat-card class="game-card">
         <img
           mat-card-image
           src="https://material.angular.io/assets/img/examples/shiba2.jpg"
           alt="Photo of a Shiba Inu"
+          class="img"
         />
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-actions>
-          <button mat-raised-button color="warn" id="details">
-            More Info
-          </button>
-          <p><span>5/20</span><mat-icon class="notes-stars">star_outline</mat-icon></p>
-        </mat-card-actions>
+        <mat-card-content class="game-card-content">
+          <div>
+            <mat-card-title>Game name</mat-card-title>
+            <mat-card-subtitle>Genre</mat-card-subtitle>
+            <div class="mat-card-actions">
+              <button mat-raised-button color="warn">
+                More Info
+              </button>
+              <p><span>5/20</span><mat-icon class="notes-stars">star_outline</mat-icon></p>
+            </div>
+          </div>
+        </mat-card-content>
       </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile colspan="4">
-      <div class="mat-card">
-        <div>
-          <img
-            mat-card-md-image
-            src="https://wallup.net/wp-content/uploads/2018/10/06/708282-kittens-kitten-cat-cats-baby-cute-s.jpg"
-          />
-        </div>
-        <div>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Medium</mat-card-subtitle>
-          <button mat-raised-button color="warn" class="small-view-details">
-            More Info
-          </button>
-        </div>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="4">
-      <div class="mat-card">
-        <div>
-          <img
-            mat-card-md-image
-            src="https://wallup.net/wp-content/uploads/2018/10/06/708282-kittens-kitten-cat-cats-baby-cute-s.jpg"
-          />
-        </div>
-        <div>
-          <mat-card-title>Game name</mat-card-title>
-          <mat-card-subtitle>Genre</mat-card-subtitle>
-          <button mat-raised-button color="warn" class="small-view-details">
-            More Info
-          </button>
-        </div>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="4">
-      <div class="mat-card">
-        <div>
-          <img
-            mat-card-md-image
-            src="https://wallup.net/wp-content/uploads/2018/10/06/708282-kittens-kitten-cat-cats-baby-cute-s.jpg"
-          />
-        </div>
-        <div>
-          <mat-card-title>Game name</mat-card-title>
-          <mat-card-subtitle>Genre</mat-card-subtitle>
-          <button mat-raised-button color="warn" class="small-view-details">
-            More Info
-          </button>
-        </div>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="4">
-      <div class="mat-card">
-        <div>
-          <img
-            mat-card-md-image
-            src="https://wallup.net/wp-content/uploads/2018/10/06/708282-kittens-kitten-cat-cats-baby-cute-s.jpg"
-          />
-        </div>
-        <div>
-          <mat-card-title>Game name</mat-card-title>
-          <mat-card-subtitle>Genre</mat-card-subtitle>
-          <button mat-raised-button color="warn" class="small-view-details">
-            More Info
-          </button>
-        </div>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="4">
-      <div class="mat-card">
-        <div>
-          <img
-            mat-card-md-image
-            src="https://wallup.net/wp-content/uploads/2018/10/06/708282-kittens-kitten-cat-cats-baby-cute-s.jpg"
-          />
-        </div>
-        <div>
-          <mat-card-title>Game name</mat-card-title>
-          <mat-card-subtitle>Genre</mat-card-subtitle>
-          <button mat-raised-button color="warn" class="small-view-details">
-            More info
-          </button>
-        </div>
-      </div>
+
+    <mat-grid-tile
+      [colspan]="(cardsLayout | async)?.cols"
+     
+    >
+      <mat-card class="game-card">
+        <img
+          mat-card-image
+          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+          alt="Photo of a Shiba Inu"
+          class="img"
+        />
+        <mat-card-content class="game-card-content">
+          <div>
+            <mat-card-title>Game name</mat-card-title>
+            <mat-card-subtitle>Genre</mat-card-subtitle>
+            <div class="mat-card-actions">
+              <button mat-raised-button color="warn">
+                More Info
+              </button>
+              <p><span>5/20</span><mat-icon class="notes-stars">star_outline</mat-icon></p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
     </mat-grid-tile>
 
-    <mat-grid-tile colspan="4">
-      <div class="mat-card">
-        <div>
-          <img
-            mat-card-md-image
-            src="https://wallup.net/wp-content/uploads/2018/10/06/708282-kittens-kitten-cat-cats-baby-cute-s.jpg"
-          />
-        </div>
-        <div>
-          <mat-card-title>Game name</mat-card-title>
-          <mat-card-subtitle>Genre</mat-card-subtitle>
-          <button mat-raised-button color="warn" class="small-view-details">
-            More Info
-          </button>
-        </div>
-      </div>
+    <mat-grid-tile
+      [colspan]="(cardsLayout | async)?.cols"
+     
+    >
+      <mat-card class="game-card">
+        <img
+          mat-card-image
+          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+          alt="Photo of a Shiba Inu"
+          class="img"
+        />
+        <mat-card-content class="game-card-content">
+          <div>
+            <mat-card-title>Game name</mat-card-title>
+            <mat-card-subtitle>Genre</mat-card-subtitle>
+            <div class="mat-card-actions">
+              <button mat-raised-button color="warn">
+                More Info
+              </button>
+              <p><span>5/20</span><mat-icon class="notes-stars">star_outline</mat-icon></p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan]="(cardsLayout | async)?.cols"
+      
+    >
+      <mat-card class="game-card">
+        <img
+          mat-card-image
+          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+          alt="Photo of a Shiba Inu"
+          class="img"
+        />
+        <mat-card-content class="game-card-content">
+          <div>
+            <mat-card-title>Game name</mat-card-title>
+            <mat-card-subtitle>Genre</mat-card-subtitle>
+            <div class="mat-card-actions">
+              <button mat-raised-button color="warn">
+                More Info
+              </button>
+              <p><span>5/20</span><mat-icon class="notes-stars">star_outline</mat-icon></p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan]="(cardsLayout | async)?.cols"
+     
+    >
+      <mat-card class="game-card">
+        <img
+          mat-card-image
+          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+          alt="Photo of a Shiba Inu"
+          class="img"
+        />
+        <mat-card-content class="game-card-content">
+          <div>
+            <mat-card-title>Game name</mat-card-title>
+            <mat-card-subtitle>Genre</mat-card-subtitle>
+            <div class="mat-card-actions">
+              <button mat-raised-button color="warn">
+                More Info
+              </button>
+              <p><span>5/20</span><mat-icon class="notes-stars">star_outline</mat-icon></p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan]="(cardsLayout | async)?.cols"
+      
+    >
+      <mat-card class="game-card">
+        <img
+          mat-card-image
+          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+          alt="Photo of a Shiba Inu"
+          class="img"
+        />
+        <mat-card-content class="game-card-content">
+          <div>
+            <mat-card-title>Game name</mat-card-title>
+            <mat-card-subtitle>Genre</mat-card-subtitle>
+            <div class="mat-card-actions">
+              <button mat-raised-button color="warn">
+                More Info
+              </button>
+              <p><span>5/20</span><mat-icon class="notes-stars">star_outline</mat-icon></p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan]="(cardsLayout | async)?.cols"
+      [rowspan]="(cardsLayout | async)?.rows"
+    >
+      <mat-card class="game-card">
+        <img
+          mat-card-image
+          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+          alt="Photo of a Shiba Inu"
+          class="img"
+        />
+        <mat-card-content class="game-card-content">
+          <div>
+            <mat-card-title>Game name</mat-card-title>
+            <mat-card-subtitle>Genre</mat-card-subtitle>
+            <div class="mat-card-actions">
+              <button mat-raised-button color="warn">
+                More Info
+              </button>
+              <p><span>5/20</span><mat-icon class="notes-stars">star_outline</mat-icon></p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
 </div>

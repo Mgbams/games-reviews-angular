@@ -1,0 +1,25 @@
+.signUp-button {
+    margin-top: 20px;
+}
+
+.signup-container{
+    text-align: center
+}
+
+.form-container{
+    width: 40vw; 
+    margin: 0 auto; 
+}
+
+.mat-form-field-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mat-form-field-container  .mat-form-field {
+    margin: 15px 0px;
+}
+
+mat-error {
+    font-size: .9rem;
+}
