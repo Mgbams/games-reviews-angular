@@ -13,6 +13,8 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
 import { NotificationComponent } from './notification/notification.component';
+import { GameDescriptionComponent } from './game-description/game-description.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { NotificationComponent } from './notification/notification.component';
     SignupComponent,
     LoginComponent,
     MatConfirmDialogComponent,
-    NotificationComponent
+    NotificationComponent,
+    GameDescriptionComponent,
+    HttpClientModule,
   ],
   imports: [
     BrowserModule,
