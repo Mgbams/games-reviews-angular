@@ -1,0 +1,50 @@
+.game-list-container {
+  padding-top: 7vh;
+}
+
+.game-list-card {
+  width: 70vw;
+  margin: auto;
+  color: white;
+  background-color: rgba(253,238,48,0.6);
+  border-radius: 25px;
+}
+
+mat-card-title {
+  text-align: center;
+  margin: 20px 0px;
+}
+
+table {
+  width: 100%;
+}
+
+.reviews-button-container {
+  margin: 20px 0px;
+}
+
+.operations-button {
+    display: flex;
+    justify-content: space-between;
+}
+
+th {
+    width: 25%;
+    font-size: 1.2rem;
+}
+
+.edit-button {
+    color: rgba(0, 128, 0, 0.712);
+}
+
+.add-game-button {
+    margin-right: 10px;
+}
+  
+  
+@media screen and (max-width: 700px) {
+    th {
+        font-size: 16px;
+    }
+      
+}

@@ -6,3 +6,15 @@
     width: 40vw; 
     margin: 0 auto; 
 }
+
+mat-error {
+    font-size: .9rem;
+}
+
+.mat-form-field-container .form-field {
+    margin-bottom: 20px;
+}
+
+.loginButton {
+    margin-top: 25px;
+}

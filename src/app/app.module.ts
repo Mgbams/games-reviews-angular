@@ -15,6 +15,8 @@ import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dial
 import { NotificationComponent } from './notification/notification.component';
 import { GameDescriptionComponent } from './game-description/game-description.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ListAvisComponent } from './list-avis/list-avis.component';
+import { ListJeuxComponent } from './list-jeux/list-jeux.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatConfirmDialogComponent,
     NotificationComponent,
     GameDescriptionComponent,
+    ListAvisComponent,
+    ListJeuxComponent,
   ],
   imports: [
     BrowserModule,
