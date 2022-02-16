@@ -27,13 +27,13 @@ import { HttpClientModule } from '@angular/common/http';
     MatConfirmDialogComponent,
     NotificationComponent,
     GameDescriptionComponent,
-    HttpClientModule,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
+    HttpClientModule,
     BrowserAnimationsModule
   ],
   providers: [],
