@@ -29,13 +29,6 @@ export class LoginComponent implements OnInit {
 
   }
 
-  // login() {
-  //   this.auth.authenticate(this.credentials, () => {
-  //       this.router.navigateByUrl('/');
-  //   });
-  //   return false;
-  // }
-
   onSubmit () {
     this.auth.authenticate(this.loginForm.value);
     this.onClose();
