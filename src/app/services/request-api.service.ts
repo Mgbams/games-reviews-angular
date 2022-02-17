@@ -8,16 +8,9 @@ import { Observable } from 'rxjs';
 })
 export class RequestApiService {
 
-  public fakeReponse = [{
-    name : "test",
-    description : "lieufhglkjqgfbdlkzhegfblkjhsdgbfljzehvbflshfvblzjevfljzhvfljerhbvfljhrvefljhzvfjhvzejfhvsljhfvzjhefhjzebvf",
-    img: "../../asset/zelda.jpg"
-  }];
-
   constructor(private http: HttpClient) { }
 
-
   public getSingleGame(id: number): Observable<any> {
-    return this.http.get("URL_A_ECRIRE_POUR_CONNECTER-LE_BACK" + id);
+    return this.http.get("http://localhost:8080/api/games/" + id);
   }
 }
