@@ -1,120 +1,133 @@
 <div class="game-list-container">
-    <mat-card class="game-list-card">
-      <mat-card-title>GAME LISTS</mat-card-title>
-  
-      <mat-card-content>
-        <div class="mat-elevation-z8">
-          <table
-            mat-table
-            [dataSource]="dataSource"
-            matSort
-            (matSortChange)="announceSortChange($event)"
-            class="mat-elevation-z8"
-          >
-            <!-- Date Sent Column -->
-            <ng-container matColumnDef="date sent">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Sent</th>
-              <td mat-cell *matCellDef="let element">{{ element.publicationDate | date:'short'}}</td>
-            </ng-container>
-  
-            <!-- Game Name Column -->
-            <ng-container matColumnDef="game name">
-              <th
-                mat-header-cell
-                *matHeaderCellDef
-                mat-sort-header
-                sortActionDescription="Sort by name"
-              >
-               Game name
-              </th>
-              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-            </ng-container>
-  
-            <!-- Player's pseudo Column -->
-            <ng-container matColumnDef="player's pseudo">
-              <th
-                mat-header-cell
-                *matHeaderCellDef
-                mat-sort-header
-                sortActionDescription="Sort by player pseudo"
-              >
-                Player pseudo
-              </th>
-              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-            </ng-container>
+  <mat-card class="game-list-card">
+    <mat-card-title>GAME LISTS</mat-card-title>
+    <div class="filter">
+      <p>
+        <mat-label class="filter-label">Filter</mat-label>
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event)" />
+        </mat-form-field>
+      </p>
+     
+    </div>
+    <mat-card-content>
+      <div class="mat-elevation-z8">
+        <table
+          mat-table
+          [dataSource]="dataSource"
+          matSort
+          (matSortChange)="announceSortChange($event)"
+          class="mat-elevation-z8"
+        >
+          <!-- Date Sent Column -->
+          <ng-container matColumnDef="date sent">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Sent</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.publicationDate | date: "short" }}
+            </td>
+          </ng-container>
 
-            <!-- Note Column -->
-            <ng-container matColumnDef="note">
-                <th
-                  mat-header-cell
-                  *matHeaderCellDef
-                  mat-sort-header
-                  sortActionDescription="Sort by note"
-                >
-                  Note
-                </th>
-                <td mat-cell *matCellDef="let element">{{ element.score }}</td>
-              </ng-container>
+          <!-- Game Name Column -->
+          <ng-container matColumnDef="game name">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+              sortActionDescription="Sort by name"
+            >
+              Game name
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+          </ng-container>
 
-              <!-- Image Column -->
-            <ng-container matColumnDef="image">
-                <th
-                  mat-header-cell
-                  *matHeaderCellDef
-                  sortActionDescription="Sort by image"
-                >
-                  Image
-                </th>
-                <td mat-cell *matCellDef="let element">{{ element.image }}</td>
-              </ng-container>
+          <!-- Player's pseudo Column -->
+          <ng-container matColumnDef="player's pseudo">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+              sortActionDescription="Sort by player pseudo"
+            >
+              Player pseudo
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+          </ng-container>
 
-              <!-- Statut Column -->
-            <ng-container matColumnDef="statut">
-                <th
-                  mat-header-cell
-                  *matHeaderCellDef
-                  sortActionDescription="Sort by statut"
+          <!-- Note Column -->
+          <ng-container matColumnDef="note">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+              sortActionDescription="Sort by note"
+            >
+              Note
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.score }}</td>
+          </ng-container>
+
+          <!-- Image Column -->
+          <ng-container matColumnDef="image">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              sortActionDescription="Sort by image"
+            >
+              Image
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.image }}</td>
+          </ng-container>
+
+          <!-- Statut Column -->
+          <ng-container matColumnDef="statut">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              sortActionDescription="Sort by statut"
+            >
+              Statut
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+          </ng-container>
+
+          <!-- Operations Column -->
+          <ng-container matColumnDef="operations" class="operations-container">
+            <th mat-header-cell *matHeaderCellDef>Operations</th>
+            <div class="operations-button">
+              <td mat-cell *matCellDef="let element">
+                <button
+                  mat-icon-button
+                  color="primary"
+                  (click)="viewReview(element)"
+                  title="View"
                 >
-                  Statut
-                </th>
-                <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-              </ng-container>
-  
-            <!-- Operations Column -->
-            <ng-container matColumnDef="operations" class="operations-container">
-              <th mat-header-cell *matHeaderCellDef>Operations</th>
-              <div class="operations-button">
-                <td mat-cell *matCellDef="let element">
-  
-                  <button
-                    mat-icon-button
-                    color="primary"
-                    (click)="viewReview(element)"
-                    title="View"
-                  >
-                    <mat-icon>visibility</mat-icon>
-                  </button>
-                </td>
-              </div>
-            </ng-container>
-  
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-          </table>
-  
-          <mat-paginator
-            [pageSizeOptions]="[5, 10, 20]"
-            [hidePageSize]="true"
-            showFirstLastButtons
-            aria-label="Select page of games"
-          >
-          </mat-paginator>
-        </div>
-        <div class="reviews-button-container">
-          <a routerLink="/add-review" routerLinkActive="active" class="add-review-button">Add a Review</a>
-          <button mat-raised-button class="review-lists--button">Log off</button>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  
+                  <mat-icon>visibility</mat-icon>
+                </button>
+              </td>
+            </div>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20]"
+          [hidePageSize]="true"
+          showFirstLastButtons
+          aria-label="Select page of games"
+        >
+        </mat-paginator>
+      </div>
+      <div class="reviews-button-container">
+        <a
+          routerLink="/add-review"
+          routerLinkActive="active"
+          class="add-review-button"
+          >Add a Review</a
+        >
+        <button mat-raised-button class="review-lists--button">Log off</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

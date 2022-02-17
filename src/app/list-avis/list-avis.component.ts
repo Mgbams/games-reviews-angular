@@ -29,7 +29,7 @@ const ELEMENT_DATA: Review[] = [
     moderatorId: 3,
     playerId: 6,
     image: '4.jpg',
-    name: 'Justin',
+    name: 'Abel',
     publisher: 'Sly Boy',
   },
   {
@@ -42,7 +42,7 @@ const ELEMENT_DATA: Review[] = [
     moderatorId: 3,
     playerId: 6,
     image: '4.jpg',
-    name: 'Justin',
+    name: 'Kieran',
     publisher: 'Sly Boy',
   },
   {
@@ -55,7 +55,7 @@ const ELEMENT_DATA: Review[] = [
     moderatorId: 3,
     playerId: 6,
     image: '4.jpg',
-    name: 'Justin',
+    name: 'Wissem',
     publisher: 'Sly Boy',
   },
   {
@@ -68,7 +68,7 @@ const ELEMENT_DATA: Review[] = [
     moderatorId: 3,
     playerId: 6,
     image: '4.jpg',
-    name: 'Justin',
+    name: 'Oleg',
     publisher: 'Sly Boy',
   },
   {
@@ -125,4 +125,10 @@ export class ListAvisComponent implements OnInit, AfterViewInit {
   }
 
   viewReview(element: Review) {}
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  
 }

@@ -2,6 +2,15 @@
   padding-top: 7vh;
 }
 
+.filter-label {
+  margin-right: 10px;
+}
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+}
+
 .game-list-card {
   width: 70vw;
   margin: auto;

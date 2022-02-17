@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ListAvisComponent } from './list-avis/list-avis.component';
 import { ListJeuxComponent } from './list-jeux/list-jeux.component';
 import { AddReviewComponent } from './add-review/add-review.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AddReviewComponent } from './add-review/add-review.component';
     ListAvisComponent,
     ListJeuxComponent,
     AddReviewComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
