@@ -18,6 +18,7 @@ export class AuthService {
 
     return this.http.post('http://localhost:8080/api/player/login', value)
     .subscribe(result => {
+      sessionStorage.setItem('currentUser', JSON.stringify(result));
       console.log(result);
     });
   }
