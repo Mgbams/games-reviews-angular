@@ -17,6 +17,7 @@ import { GameDescriptionComponent } from './game-description/game-description.co
 import { HttpClientModule } from '@angular/common/http';
 import { ListAvisComponent } from './list-avis/list-avis.component';
 import { ListJeuxComponent } from './list-jeux/list-jeux.component';
+import { AddReviewComponent } from './add-review/add-review.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ListJeuxComponent } from './list-jeux/list-jeux.component';
     GameDescriptionComponent,
     ListAvisComponent,
     ListJeuxComponent,
+    AddReviewComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,6 +23,13 @@ table {
   margin: 20px 0px;
 }
 
+.reviews-button-container a {
+  font-size: 20px;
+  margin-right: 10px;
+  color: crimson;
+  cursor: pointer;
+}
+
 th {
   font-size: 1.2rem;
 }
@@ -31,9 +38,9 @@ th {
   color: rgba(0, 128, 0, 0.712);
 }
 
-.add-game-button {
-  margin-right: 10px;
-}
+.active{
+  color: palevioletred;
+} 
 
 @media screen and (max-width: 700px) {
   th {

@@ -16,6 +16,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
+import {MatSelectModule} from '@angular/material/select';
 
 
 const MaterialComponents = [
@@ -36,6 +37,7 @@ const MaterialComponents = [
   MatMenuModule,
   MatTableModule,
   MatSortModule,
+  MatSelectModule,
 ];
 
 @NgModule({

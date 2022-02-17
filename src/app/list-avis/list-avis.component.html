@@ -14,7 +14,7 @@
             <!-- Date Sent Column -->
             <ng-container matColumnDef="date sent">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Sent</th>
-              <td mat-cell *matCellDef="let element">{{ element.publicationDate | date:'shortDate' }}</td>
+              <td mat-cell *matCellDef="let element">{{ element.publicationDate | date:'short'}}</td>
             </ng-container>
   
             <!-- Game Name Column -->
@@ -77,7 +77,7 @@
                 >
                   Statut
                 </th>
-                <td mat-cell *matCellDef="let element">{{ element.statut }}</td>
+                <td mat-cell *matCellDef="let element">{{ element.name }}</td>
               </ng-container>
   
             <!-- Operations Column -->
@@ -111,7 +111,7 @@
           </mat-paginator>
         </div>
         <div class="reviews-button-container">
-          <button mat-raised-button class="add-game-button">Add a Review</button>
+          <a routerLink="/add-review" routerLinkActive="active" class="add-review-button">Add a Review</a>
           <button mat-raised-button class="review-lists--button">Log off</button>
         </div>
       </mat-card-content>
