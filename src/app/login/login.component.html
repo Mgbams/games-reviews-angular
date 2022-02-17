@@ -1,18 +1,22 @@
 <div class="login-container">
   <div class="form-container">
-    <form [formGroup]="loginForm" (submit)="onSubmit()">
+    <form
+      [formGroup]="loginForm"
+      (submit)="onSubmit()"
+      enctype="multipart/form-data"
+    >
       <div class="mat-form-field-container">
         <mat-form-field class="form-field" appearance="outline">
           <mat-label> Pseudo </mat-label>
-          <input matInput formControlName="nickname" />
+          <input matInput formControlName="pseudonym" />
           <mat-error
             *ngIf="
-              loginFormFormControls['nickname'].invalid &&
-              (loginFormFormControls['nickname'].dirty ||
-                loginFormFormControls['nickname'].touched)
+              loginFormFormControls['pseudonym'].invalid &&
+              (loginFormFormControls['pseudonym'].dirty ||
+                loginFormFormControls['pseudonym'].touched)
             "
           >
-            <span *ngIf="loginFormFormControls['nickname'].errors?.['required']"
+            <span *ngIf="loginFormFormControls['pseudonym'].errors?.['required']"
               >Pseudo is required</span
             >
           </mat-error>
@@ -36,7 +40,14 @@
         </mat-form-field>
       </div>
       <div>
-        <button mat-raised-button color="primary" type="submit" class="loginButton">Log In</button>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="loginButton"
+        >
+          Log In
+        </button>
       </div>
     </form>
   </div>

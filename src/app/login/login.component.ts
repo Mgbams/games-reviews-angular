@@ -1,22 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   submitted = false;
 
-  constructor(public dialogRef: MatDialogRef<LoginComponent>, private formBuilder: FormBuilder) { }
+  credentials = { username: '', password: '' };
+
+  constructor(
+    public dialogRef: MatDialogRef<LoginComponent>,
+    private formBuilder: FormBuilder,
+    private auth: AuthService,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      nickname: [null, [Validators.required]],
-      password: [null, Validators.required]
+      pseudonym: [null, [Validators.required]],
+      password: [null, Validators.required],
     });
   }
 
@@ -24,18 +35,17 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  onSubmit () {
+  onSubmit() {
     this.submitted = true;
 
     if (this.loginForm.invalid) {
       return;
     }
+    this.auth.authenticate(this.loginForm.value);
     this.onClose();
   }
 
   onClose() {
     this.dialogRef.close();
   }
-
-
 }

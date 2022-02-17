@@ -20,6 +20,7 @@ import { ListJeuxComponent } from './list-jeux/list-jeux.component';
 import { AddReviewComponent } from './add-review/add-review.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,8 +42,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AppRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
