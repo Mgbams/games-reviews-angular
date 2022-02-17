@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,16 +13,31 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(public dialogRef: MatDialogRef<LoginComponent>, private formBuilder: FormBuilder) { }
+  credentials = {username: '', password: ''};
+
+  constructor(public dialogRef: MatDialogRef<LoginComponent>, 
+              private formBuilder: FormBuilder,
+              private auth: AuthService,
+              private http: HttpClient, 
+              private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      pseudo: [null, [Validators.required]],
+      pseudonym: [null, [Validators.required]],
       password: [null, Validators.required]
     });
+
   }
 
+  // login() {
+  //   this.auth.authenticate(this.credentials, () => {
+  //       this.router.navigateByUrl('/');
+  //   });
+  //   return false;
+  // }
+
   onSubmit () {
+    this.auth.authenticate(this.loginForm.value);
     this.onClose();
   }
 
