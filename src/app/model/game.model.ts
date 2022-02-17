@@ -1,6 +1,12 @@
 export interface Game {
   id: number;
-  image: string;
+  picture: string;
   name: string;
   publisher: string;
+  genre: Genre;
+}
+
+interface Genre {
+  id: number;
+  name: string;
 }

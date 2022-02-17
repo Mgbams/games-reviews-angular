@@ -6,15 +6,15 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
 import { Game } from '../model/game.model';
 
 
-const ELEMENT_DATA: Game[] = [
-  {id: 1, image: '1.jpg', name: 'Hydrogen', publisher: 'Arthur' },
-  {id: 2, image: '1.jpg', name: 'Hydrogen', publisher: 'Arthur' },
-  {id: 3, image: '1.jpg', name: 'Hydrogen', publisher: 'Arthur' },
-  {id: 4, image: '1.jpg', name: 'Hydrogen', publisher: 'Arthur' },
-  {id: 5, image: '1.jpg', name: 'Hydrogen', publisher: 'Arthur' },
-  {id: 6, image: '1.jpg', name: 'Hydrogen', publisher: 'Arthur' },
+/*const ELEMENT_DATA: Game[] = [
+  {id: 1, picture: '1.jpg', name: 'Hydrogen', publisher: 'Arthur', genre: 'yello' },
+  {id: 2, picture: '1.jpg', name: 'Hydrogen', publisher: 'Arthur', genre: 'yello' },
+  {id: 3, picture: '1.jpg', name: 'Hydrogen', publisher: 'Arthur', genre: 'yello' },
+  {id: 4, picture: '1.jpg', name: 'Hydrogen', publisher: 'Arthur', genre: 'yello' },
+  {id: 5, picture: '1.jpg', name: 'Hydrogen', publisher: 'Arthur', genre: 'yello' },
+  {id: 6, picture: '1.jpg', name: 'Hydrogen', publisher: 'Arthur' , genre: 'yello'},
   
-];
+];*/
 
 @Component({
   selector: 'app-list-jeux',
@@ -23,7 +23,7 @@ const ELEMENT_DATA: Game[] = [
 })
 export class ListJeuxComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['image', 'name', 'publisher', 'operations'];
-  dataSource = new MatTableDataSource<Game>(ELEMENT_DATA);
+  // dataSource = new MatTableDataSource<Game>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -34,8 +34,8 @@ export class ListJeuxComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    //this.dataSource.paginator = this.paginator;
+    //this.dataSource.sort = this.sort;
   }
 
   announceSortChange(sortState: Sort) {

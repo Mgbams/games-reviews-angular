@@ -21,184 +21,35 @@
 
 <h3 class="home-page-game-lists">NEW GAMES IN THE BLOCK</h3>
 
-<div class="grid-container">
+<div class="grid-container" *ngIf="games">
   <mat-grid-list [cols]="(cardsLayout | async)?.gridColumns" rowHeight="350px">
     <mat-grid-tile
       [colspan]="(cardsLayout | async)?.cols"
-     
+      *ngFor="let game of games"
     >
       <mat-card class="game-card">
         <img
           mat-card-image
-          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+          src="{{ game.picture }}"
           alt="Photo of a Shiba Inu"
           class="img"
         />
         <mat-card-content class="game-card-content">
           <div>
-            <mat-card-title>Game name</mat-card-title>
-            <mat-card-subtitle>Genre</mat-card-subtitle>
+            <mat-card-title>{{ game.name }}</mat-card-title>
+            <mat-card-subtitle>{{ game.genre.name }}</mat-card-subtitle>
             <div class="mat-card-actions">
-              <button mat-raised-button color="warn">
+              <button
+                mat-raised-button
+                color="warn"
+                (click)="moreDetails(game.id)"
+              >
                 More Info
               </button>
-              <p><span>5/20</span><mat-icon class="notes-stars">star_outline</mat-icon></p>
-            </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile
-      [colspan]="(cardsLayout | async)?.cols"
-     
-    >
-      <mat-card class="game-card">
-        <img
-          mat-card-image
-          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-          alt="Photo of a Shiba Inu"
-          class="img"
-        />
-        <mat-card-content class="game-card-content">
-          <div>
-            <mat-card-title>Game name</mat-card-title>
-            <mat-card-subtitle>Genre</mat-card-subtitle>
-            <div class="mat-card-actions">
-              <button mat-raised-button color="warn">
-                More Info
-              </button>
-              <p><span>5/20</span><mat-icon class="notes-stars">star_outline</mat-icon></p>
-            </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile
-      [colspan]="(cardsLayout | async)?.cols"
-     
-    >
-      <mat-card class="game-card">
-        <img
-          mat-card-image
-          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-          alt="Photo of a Shiba Inu"
-          class="img"
-        />
-        <mat-card-content class="game-card-content">
-          <div>
-            <mat-card-title>Game name</mat-card-title>
-            <mat-card-subtitle>Genre</mat-card-subtitle>
-            <div class="mat-card-actions">
-              <button mat-raised-button color="warn">
-                More Info
-              </button>
-              <p><span>5/20</span><mat-icon class="notes-stars">star_outline</mat-icon></p>
-            </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile
-      [colspan]="(cardsLayout | async)?.cols"
-      
-    >
-      <mat-card class="game-card">
-        <img
-          mat-card-image
-          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-          alt="Photo of a Shiba Inu"
-          class="img"
-        />
-        <mat-card-content class="game-card-content">
-          <div>
-            <mat-card-title>Game name</mat-card-title>
-            <mat-card-subtitle>Genre</mat-card-subtitle>
-            <div class="mat-card-actions">
-              <button mat-raised-button color="warn">
-                More Info
-              </button>
-              <p><span>5/20</span><mat-icon class="notes-stars">star_outline</mat-icon></p>
-            </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile
-      [colspan]="(cardsLayout | async)?.cols"
-     
-    >
-      <mat-card class="game-card">
-        <img
-          mat-card-image
-          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-          alt="Photo of a Shiba Inu"
-          class="img"
-        />
-        <mat-card-content class="game-card-content">
-          <div>
-            <mat-card-title>Game name</mat-card-title>
-            <mat-card-subtitle>Genre</mat-card-subtitle>
-            <div class="mat-card-actions">
-              <button mat-raised-button color="warn">
-                More Info
-              </button>
-              <p><span>5/20</span><mat-icon class="notes-stars">star_outline</mat-icon></p>
-            </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile
-      [colspan]="(cardsLayout | async)?.cols"
-      
-    >
-      <mat-card class="game-card">
-        <img
-          mat-card-image
-          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-          alt="Photo of a Shiba Inu"
-          class="img"
-        />
-        <mat-card-content class="game-card-content">
-          <div>
-            <mat-card-title>Game name</mat-card-title>
-            <mat-card-subtitle>Genre</mat-card-subtitle>
-            <div class="mat-card-actions">
-              <button mat-raised-button color="warn">
-                More Info
-              </button>
-              <p><span>5/20</span><mat-icon class="notes-stars">star_outline</mat-icon></p>
-            </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile
-      [colspan]="(cardsLayout | async)?.cols"
-      [rowspan]="(cardsLayout | async)?.rows"
-    >
-      <mat-card class="game-card">
-        <img
-          mat-card-image
-          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-          alt="Photo of a Shiba Inu"
-          class="img"
-        />
-        <mat-card-content class="game-card-content">
-          <div>
-            <mat-card-title>Game name</mat-card-title>
-            <mat-card-subtitle>Genre</mat-card-subtitle>
-            <div class="mat-card-actions">
-              <button mat-raised-button color="warn">
-                More Info
-              </button>
-              <p><span>5/20</span><mat-icon class="notes-stars">star_outline</mat-icon></p>
+              <p>
+                <span>5/20</span
+                ><mat-icon class="notes-stars">star_outline</mat-icon>
+              </p>
             </div>
           </div>
         </mat-card-content>
