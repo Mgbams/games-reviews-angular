@@ -11,19 +11,44 @@ export class GameDescriptionComponent implements OnInit {
 
   public idGame: any;
   public response: any;
+  public isLogStatus = "";
+  public reviewGame = [{
+    name: "Testtesttest",
+    description : "oezufhzeiufhgzeifgzeifglzegfzegflzehfbglvichzefvczef",
+    datePublication : "2020-01-01",
+    score: "12"
+  },
+  {
+  name: "Testtesttest",
+  description : "oezufhzeiufhgzeifgzeifglzegfzegflzehfbglvichzefvczef",
+  datePublication : "2020-01-01",
+  score: "12"
+  }];
 
   constructor(private requestApiService: RequestApiService,
     private route: ActivatedRoute) {
     this.idGame = this.route.snapshot.paramMap.get('idGame');
+
     this.requestApiService.getSingleGame(this.idGame)
       .subscribe((value: any) => {
-
-        // this.response = value;
-        this.response = this.requestApiService.fakeReponse;
+        this.response = value;
+        console.log(value);
       });
+      
+    }
+    
+    ngOnInit(): void {
+      this.isLogStatus = "Player"
+    }
+
+  public addReview(id: number) {
+    console.log(id);
   }
 
-  ngOnInit(): void {
+  public modifyGame(id: number) {
+    console.log(id);
   }
-
+  public deleteGame(id: number) {
+    console.log(id);
+  }
 }
