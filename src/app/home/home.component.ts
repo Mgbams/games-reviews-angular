@@ -3,10 +3,10 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Layout } from '../layout.model';
-import { HomePageService } from '../services/home-page.service';
 import { Game } from '../model/game.model';
 import { Pageable } from '../model/pageable.model';
 import { Router } from '@angular/router';
+import { AddGameService } from '../services/add-game.service';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private homePageService: HomePageService,
+    private homePageService: AddGameService,
     private route: Router
   ) {}
 

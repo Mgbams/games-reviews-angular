@@ -10,7 +10,6 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
 import { NotificationComponent } from './notification/notification.component';
 import { GameDescriptionComponent } from './game-description/game-description.component';
@@ -19,6 +18,9 @@ import { ListAvisComponent } from './list-avis/list-avis.component';
 import { ListJeuxComponent } from './list-jeux/list-jeux.component';
 import { AddReviewComponent } from './add-review/add-review.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AddGameComponent } from './add-game/add-game.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -36,12 +38,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ListJeuxComponent,
     AddReviewComponent,
     PageNotFoundComponent,
+    AddGameComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
     BrowserAnimationsModule,
     HttpClientModule
   ],

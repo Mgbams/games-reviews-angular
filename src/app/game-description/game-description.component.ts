@@ -1,5 +1,6 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RequestApiService } from '../services/request-api.service';
 
 @Component({
@@ -26,13 +27,20 @@ export class GameDescriptionComponent implements OnInit {
   }];
 
   constructor(private requestApiService: RequestApiService,
-    private route: ActivatedRoute) {
-    this.idGame = this.route.snapshot.paramMap.get('idGame');
+    private route: ActivatedRoute,
+    private router: Router
+    ) {
+    this.idGame = Number(this.route.snapshot.paramMap.get('idGame'));
 
     this.requestApiService.getSingleGame(this.idGame)
-      .subscribe((value: any) => {
-        this.response = value;
-        console.log(value);
+      .subscribe({
+        next: (value: Number) => {
+          this.response = value;
+          console.log(value);
+        },
+        error: (error) => {
+          this.router.navigate(['**']);
+        }
       });
       
     }
