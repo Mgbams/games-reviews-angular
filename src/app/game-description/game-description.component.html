@@ -33,10 +33,10 @@
         </div>
     </div>
     <div class="button_action">
-        <div *ngIf="this.isLogStatus == 'Player'">
+        <div *ngIf="this.isLogStatus && this.isLogStatus.role == 'Player'">
             <button mat-raised-button (click)="addReview(response.id)">Ajouter un avis</button>
         </div>
-        <div *ngIf="this.isLogStatus == 'Moderator'">
+        <div *ngIf="this.isLogStatus && this.isLogStatus.role == 'Moderator'">
             <button mat-raised-button color="primary" (click)="modifyGame(response.id)">Modifier Jeu</button>
             <button mat-raised-button color="warn" (click)="deleteGame(response.id)">Supprimer Jeu</button>
         </div>

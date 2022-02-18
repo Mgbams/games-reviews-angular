@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
+import { AuthService } from '../services/auth.service';
 import { DialogService } from '../shared/dialog.service';
 import { SignupComponent } from '../signup/signup.component';
 
@@ -11,9 +12,17 @@ import { SignupComponent } from '../signup/signup.component';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private dialog: MatDialog, private dialogService: DialogService) { }
+  public isLogStatus : any;
+
+  constructor(  private dialog: MatDialog, 
+                private dialogService: DialogService,
+                private auth: AuthService) { 
+                  
+                  
+                }
 
   ngOnInit(): void {
+    this.isLogStatus = this.auth.isAuthenticated()
   }
 
   /*initializeFormGroup() {
@@ -43,4 +52,7 @@ export class HeaderComponent implements OnInit {
 
   }
 
+  public LogOut() {
+    this.auth.Logout();
+  }
 }
