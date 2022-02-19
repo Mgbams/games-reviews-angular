@@ -37,8 +37,8 @@
             <button mat-raised-button (click)="addReview(response.id)">Ajouter un avis</button>
         </div>
         <div *ngIf="this.isLogStatus && this.isLogStatus.role == 'Moderator'">
-            <button mat-raised-button color="primary" (click)="modifyGame(response.id)">Modifier Jeu</button>
-            <button mat-raised-button color="warn" (click)="deleteGame(response.id)">Supprimer Jeu</button>
+            <button mat-raised-button color="primary" (click)="modifyGame(response.id)">Edit Game</button>
+            <button mat-raised-button color="warn" (click)="deleteGame(response.id)">Delete Game</button>
         </div>
     </div>
     <div class="review_div">

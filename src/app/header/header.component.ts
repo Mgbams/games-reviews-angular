@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
+import { isLogStatus } from '../model/log-status.model';
 import { AuthService } from '../services/auth.service';
 import { DialogService } from '../shared/dialog.service';
 import { SignupComponent } from '../signup/signup.component';
@@ -12,17 +14,22 @@ import { SignupComponent } from '../signup/signup.component';
 })
 export class HeaderComponent implements OnInit {
 
-  public isLogStatus : any;
+
+  public isLogStatus! : isLogStatus;
+  public isLogin = false;
 
   constructor(  private dialog: MatDialog, 
                 private dialogService: DialogService,
-                private auth: AuthService) { 
-                  
+                private auth: AuthService,
+                private router: Router) { 
                   
                 }
-
+                
   ngOnInit(): void {
-    this.isLogStatus = this.auth.isAuthenticated()
+    if(this.auth.isAuthenticated()) {
+      this.isLogStatus = this.auth.isAuthenticated();
+      this.isLogin = true;
+    } 
   }
 
   onSignUp(): void {
@@ -46,5 +53,13 @@ export class HeaderComponent implements OnInit {
 
   public LogOut() {
     this.auth.Logout();
+  }
+
+  public addGame() {
+    this.router.navigate(['add-game'])
+  }
+
+  public ModeratorPage() {
+    this.router.navigate(['moderator-page'])
   }
 }

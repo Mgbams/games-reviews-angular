@@ -4,16 +4,15 @@
       <p class="website-title"><a href="">TEAM ONE GAMEZONE</a></p>
     </div>
     <div class="buttons">
-      <button
-        mat-raised-button
-        class="signup-button"
-        (click)="onSignUp()"
-        *ngIf='!this.isLogStatus'
-      >
-        Signup
-      </button>
-      <button *ngIf='!this.isLogStatus' mat-stroked-button (click)="onLogin()">Login</button>
-      <button *ngIf='this.isLogStatus' (click)="LogOut()" mat-raised-button color="warn">Log Off</button>
+      <div *ngIf="!isLogin">
+        <button mat-raised-button class="signup-button" (click)="onSignUp()"*ngIf='!isLogStatus' >Signup</button>
+        <button mat-stroked-button (click)="onLogin()">Login</button>
+      </div>
+      <div *ngIf="isLogin">
+        <button *ngIf='isLogStatus.role == "Moderator"' mat-stroked-button (click)="addGame()">Add Game</button>
+        <button *ngIf=' isLogStatus.role == "Moderator"' mat-stroked-button (click)="ModeratorPage()">Moderator Page</button>
+        <button (click)="LogOut()" mat-raised-button color="warn">Log Off</button>
+      </div>
     </div>
 
     <button mat-icon-button  [matMenuTriggerFor]="menu" class="hamburger-menu" >
@@ -21,9 +20,9 @@
     </button>
 
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="onSignUp()"><span>SignUp</span></button>
-      <button mat-menu-item (click)="onLogin()"><span>Login</span></button>
-      <button mat-menu-item color="warn"><span>Log Off</span></button>
+      <button mat-menu-item *ngIf='!isLogStatus' (click)="onSignUp()"><span>SignUp</span></button>
+      <button mat-menu-item *ngIf='!isLogStatus' (click)="onLogin()"><span>Login</span></button>
+      <button mat-menu-item *ngIf='isLogStatus' color="warn"><span>Log Off</span></button>
     </mat-menu>
   </mat-toolbar>
 </nav>
