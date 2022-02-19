@@ -11,6 +11,10 @@
   align-items: center;
 }
 
+.slider-container {
+  margin-top: 25px;
+}
+
 .welcome-page-title {
   width: 40vw;
 }

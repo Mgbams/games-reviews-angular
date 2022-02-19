@@ -14,9 +14,9 @@ export class SignupComponent implements OnInit {
   signUpForm!: FormGroup;
   submitted = false;
   temporaryData!: FormGroup;
+  notificationDurationInSeconds = 5;
   emailRegx =
     /^(([^<>+()\[\]\\.,;:\s@"-#$%&=]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
-  notificationDurationInSeconds = 5;
 
   constructor(
     public dialogRef: MatDialogRef<SignupComponent>,
@@ -75,8 +75,6 @@ export class SignupComponent implements OnInit {
 
   // closing signup modal
   onClose() {
-    //this.service.form.reset();
-    //this.service.initializeFormGroup();
     this.dialogRef.close();
   }
 
