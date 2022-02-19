@@ -20,9 +20,15 @@
     </button>
 
     <mat-menu #menu="matMenu">
-      <button mat-menu-item *ngIf='!isLogStatus' (click)="onSignUp()"><span>SignUp</span></button>
-      <button mat-menu-item *ngIf='!isLogStatus' (click)="onLogin()"><span>Login</span></button>
-      <button mat-menu-item *ngIf='isLogStatus' color="warn"><span>Log Off</span></button>
+      <div *ngIf="!isLogin">
+        <button mat-menu-item (click)="onSignUp()"><span>SignUp</span></button>
+        <button mat-menu-item (click)="onLogin()"><span>Login</span></button>
+      </div>
+      <div *ngIf="isLogin">
+        <button mat-menu-item *ngIf='isLogStatus.role == "Moderator"'  (click)="addGame()" color="warn"><span>Add Game</span></button>
+        <button mat-menu-item *ngIf='isLogStatus.role == "Moderator"'(click)="ModeratorPage()"  color="warn"><span>Moderator Page</span></button>
+        <button mat-menu-item (click)="LogOut()" color="warn"><span>Log Off</span></button>
+      </div>
     </mat-menu>
   </mat-toolbar>
 </nav>
