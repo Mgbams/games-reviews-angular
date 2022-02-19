@@ -14,6 +14,7 @@ const routes: Routes = [
     {path: 'add-review', component: AddReviewComponent},
     {path: '', redirectTo: '/home', pathMatch: "full"},
     {path: 'gameDescription/:idGame', component: GameDescriptionComponent},
+    {path: 'error', pathMatch: 'full', component: PageNotFoundComponent },
     {path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
 

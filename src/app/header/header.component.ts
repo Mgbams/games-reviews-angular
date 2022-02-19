@@ -25,14 +25,6 @@ export class HeaderComponent implements OnInit {
     this.isLogStatus = this.auth.isAuthenticated()
   }
 
-  /*initializeFormGroup() {
-    this.initializeFormGroup.setValue({
-      fullName: '',
-      department: 0,
-      gender: '1'
-    })
-  }*/
-
   onSignUp(): void {
     this.dialogService.onSignUp();
   }

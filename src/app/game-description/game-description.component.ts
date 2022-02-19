@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { RequestApiService } from '../services/request-api.service';
 
@@ -34,14 +34,26 @@ export class GameDescriptionComponent implements OnInit {
 
   constructor(private requestApiService: RequestApiService,
               private route: ActivatedRoute,
+              private router: Router,
               private auth : AuthService) {
     this.idGame = this.route.snapshot.paramMap.get('idGame');
 
     this.requestApiService.getSingleGame(this.idGame)
       .subscribe((value: any) => {
         this.response = value;
-      });
+        
+      }); 
       
+      // this.requestApiService.getSingleGame(this.idGame)
+      // .subscribe({
+      //   next: (value: any) => {
+      //     this.response = value;
+      //   },
+      //   error : () => {
+      //     this.router.navigate(['/error']);
+      //   }
+        
+      // });
     }
     
   ngOnInit(): void {
