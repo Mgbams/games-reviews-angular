@@ -8,15 +8,16 @@
         <div class="text_detail">
             <div class="genre">
                 <p>
-                    {{this.response.genre.name}}
+                     Genre : {{this.response.genre.name}}
                 </p>
             </div>
             <div class="business">
                 <p>
-                    {{this.response.businessModel.name}} publié par {{this.response.publisher.name}}
+                    Style de gameplay : {{this.response.businessModel.name}} publié par {{this.response.publisher.name}}
                 </p>
             </div>
             <div class="platforms_div">
+                <p>Disponible sur les plateforms : </p> 
                 <div *ngFor="let platforms of this.response.platforms" >
                     {{platforms.name}}
                 </div>
@@ -32,7 +33,7 @@
             <img src="{{response.picture}}" alt="{{this.response.name}}">
         </div>
     </div>
-    <div class="button_action">
+    <div class="button_action buttons">
         <div *ngIf="this.isLogStatus && this.isLogStatus.role == 'Player'">
             <button mat-raised-button (click)="addReview(response.id)">Ajouter un avis</button>
         </div>
