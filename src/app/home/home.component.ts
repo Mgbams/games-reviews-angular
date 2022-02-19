@@ -7,6 +7,7 @@ import { Game } from '../model/game.model';
 import { Pageable } from '../model/pageable.model';
 import { Router } from '@angular/router';
 import { AddGameService } from '../services/add-game.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-home',
@@ -14,12 +15,17 @@ import { AddGameService } from '../services/add-game.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  pageSize!: number;
+  pageSizeOptions!: number[];
+  length!: number;
+
+  // Pagination initial data
+  initialPageStart = 0;
+  initialPageEnd = 6;
+
   cardsLayout!: Observable<Layout>;
   games: Game[] = [];
   msgError = '';
-  totalElements = 0;
-  totalPages = 0;
-  pageable: Pageable[] = [];
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -28,7 +34,8 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getGames();
+    //this.getGames();
+    this.getPageableGames();
 
     this.cardsLayout = merge(
       this.breakpointObserver
@@ -93,20 +100,41 @@ export class HomeComponent implements OnInit {
     };
   }
 
+  getPageableGames(): void {
+    this.homePageService
+      .getPageableGames(this.initialPageStart, this.initialPageEnd)
+      .subscribe({
+        next: (data) => {
+          this.games = data['content'];
+          this.pageSizeOptions = data['pageable'];
+          this.length = data.totalElements;
+          this.pageSize = data.totalPages;
+        },
+        error: (error) => (this.msgError = error),
+      });
+  }
+
   getGames(): void {
-    this.homePageService.getGames().subscribe(
-      (data) => {
+    this.homePageService.getGames().subscribe({
+      next: (data) => {
         this.games = data['content'];
-        this.pageable = data['pageable'];
-        this.totalElements = data.totalElements;
-        this.totalPages = data.totalPages;
+        this.pageSizeOptions = data['pageable'];
+        this.length = data.totalElements;
+        this.pageSize = data.totalPages;
       },
-      (error) => (this.msgError = error)
-    );
+      error: (error) => (this.msgError = error),
+    });
   }
 
   moreDetails(id: number): void {
     const updateId = Number(id);
     this.route.navigate(['/gameDescription', updateId]);
+  }
+
+  nextPage(event: any) {
+    this.games = event['content'];
+    this.pageSizeOptions = event['pageable'];
+    this.length = event.totalElements;
+    this.pageSize = event.totalPages;
   }
 }

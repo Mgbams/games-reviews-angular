@@ -21,6 +21,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AddGameComponent } from './add-game/add-game.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { PaginatorComponent } from './paginator/paginator.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     AddReviewComponent,
     PageNotFoundComponent,
     AddGameComponent,
+    PaginatorComponent,
   ],
   imports: [
     BrowserModule,

@@ -62,4 +62,13 @@ export class AddGameService {
       gameImage
     );
   }
+
+  public getPageableGames(page: number, size: number): Observable<any> {
+    return this.httpClient.get(`${this.BASE_URL.pageableGameBaseUrl}?page=${page}&size=${size}`);
+  }
+
+  // TO DO
+  public deleteGame(id: number) {
+    return this.httpClient.delete(`${this.BASE_URL.gameBaseUrl}/${id}`);
+  }
 }

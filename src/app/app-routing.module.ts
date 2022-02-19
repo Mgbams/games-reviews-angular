@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { ListAvisComponent } from './list-avis/list-avis.component';
 import { ListJeuxComponent } from './list-jeux/list-jeux.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PaginatorComponent } from './paginator/paginator.component';
 
 const routes: Routes = [
     {path: 'home', component: HomeComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
     {path: 'add-game', component: AddGameComponent},
     {path: '', redirectTo: '/home', pathMatch: "full"},
     {path: 'gameDescription/:idGame', component: GameDescriptionComponent},
+    {path: 'paginator', component: PaginatorComponent},
     {path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
 

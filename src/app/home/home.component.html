@@ -56,4 +56,6 @@
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
+
+  <app-paginator [pageSize]="pageSize" (ChangePageOnClick)="nextPage($event)" [length]="length" ></app-paginator>
 </div>
