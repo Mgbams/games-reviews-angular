@@ -9,6 +9,7 @@ export const environment = {
     platformBaseUrl: 'http://localhost:8080/api/platform',
     publisherBaseUrl: 'http://localhost:8080/api/publisher',
     businessModelBaseUrl: 'http://localhost:8080/api/business-model',
+    playerSignUpUrl: 'http://localhost:8080/api/player/signup',
   }
 };
 

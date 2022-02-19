@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DialogService } from '../shared/dialog.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotificationComponent } from '../notification/notification.component';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-signup',
@@ -22,22 +23,36 @@ export class SignupComponent implements OnInit {
     public dialogRef: MatDialogRef<SignupComponent>,
     private formBuilder: FormBuilder,
     private dialogService: DialogService,
-    private notification: MatSnackBar
+    private notification: MatSnackBar,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
-    this.signUpForm = this.formBuilder.group({
-      pseudo: [null, Validators.required],
-      email: [null, [Validators.required, Validators.pattern(this.emailRegx)]],
-      dateOfBirth: [null, Validators.required],
-      password: [null, Validators.compose([Validators.required, Validators.minLength(8)])],
-      confirmPassword: [null,  Validators.compose([Validators.required])],
-    }, {
-      validators: this.MustMatch('password', 'confirmPassword')
-    });
+    this.signUpForm = this.formBuilder.group(
+      {
+        pseudonym: [null, Validators.required],
+        email: [
+          null,
+          [Validators.required, Validators.pattern(this.emailRegx)],
+        ],
+        birth_date: [null, Validators.required],
+        password: [
+          null,
+          Validators.compose([Validators.required, Validators.minLength(8)]),
+        ],
+        confirmPassword: [null, Validators.compose([Validators.required])],
+      },
+      {
+        validators: this.MustMatch('password', 'confirmPassword'),
+      }
+    );
 
     this.dialogRef.backdropClick().subscribe(() => {
-      if (this.signUpForm.touched && this.signUpForm.invalid && this.signUpForm.dirty ) {
+      if (
+        this.signUpForm.touched &&
+        this.signUpForm.invalid &&
+        this.signUpForm.dirty
+      ) {
         this.onRegistrationCancel();
         //this.signUpForm.patchValue(this.temporaryData); TODO
       }
@@ -53,16 +68,19 @@ export class SignupComponent implements OnInit {
       const control = formGroup.controls[controlName];
       const matchingControl = formGroup.controls[matchingControlName];
 
-      if (matchingControl.errors && !matchingControl.errors['errorsMustMatch']) {
-        return 
-      } 
+      if (
+        matchingControl.errors &&
+        !matchingControl.errors['errorsMustMatch']
+      ) {
+        return;
+      }
 
       if (control.value !== matchingControl.value) {
-        matchingControl.setErrors({MustMatch: true})
+        matchingControl.setErrors({ MustMatch: true });
       } else {
         matchingControl.setErrors(null);
       }
-    }
+    };
   }
 
   onSubmit() {
@@ -70,7 +88,23 @@ export class SignupComponent implements OnInit {
     if (this.signUpForm.invalid) {
       return;
     }
-    this.onClose();
+
+    this.submitValidFormFields();
+  }
+
+  submitValidFormFields(): void {
+    this.signUpForm.patchValue({
+      birth_date: this.formatBirthDate(),
+    });
+
+    console.log(this.signUpForm.get('birth_date')?.value);
+
+    this.loginService.postPlayer(this.signUpForm.value).subscribe({
+      next: () => {
+        this.successfulSubmit();
+      },
+      error: () => this.errorDuringSubmission(),
+    });
   }
 
   // closing signup modal
@@ -86,7 +120,7 @@ export class SignupComponent implements OnInit {
       .afterClosed()
       .subscribe((res) => {
         if (res) {
-          this.openSnackBar();
+          this.cancelRegistration();
         } else {
           // this.temporaryData = this.signUpForm.value; TODO
           this.dialogService.onSignUp();
@@ -94,9 +128,46 @@ export class SignupComponent implements OnInit {
       });
   }
 
-  openSnackBar() {
-    this.notification.openFromComponent(NotificationComponent, {
-      duration: this.notificationDurationInSeconds * 1000,
+  formatBirthDate(): string {
+    let day = this.signUpForm.get('birth_date')?.value.getDate();
+    let month = this.signUpForm.get('birth_date')?.value.getMonth() + 1;
+    let year = this.signUpForm.get('birth_date')?.value.getFullYear();
+    let dateFormat = year + '-' + month + '-' + day;
+    return dateFormat;
+  }
+
+  successfulSubmit() {
+    this.notification.open(`Player successfully created`, undefined, {
+      verticalPosition: 'top',
+      horizontalPosition: 'end',
+      duration: 2500,
+      panelClass: 'custom-style',
+    });
+
+    this.signUpForm.reset();
+    Object.keys(this.signUpForm.controls).forEach((key) => {
+      this.signUpForm.get(key)?.setErrors(null);
+    });
+
+    // close the signup modal on successful signup
+    this.onClose();
+  }
+
+  errorDuringSubmission() {
+    this.notification.open("Player couldn't be created", undefined, {
+      verticalPosition: 'top',
+      horizontalPosition: 'end',
+      duration: 2500,
+      panelClass: 'custom-style-error',
+    });
+  }
+
+  cancelRegistration() {
+    this.notification.open('Registration was cancelled', undefined, {
+      verticalPosition: 'top',
+      horizontalPosition: 'end',
+      duration: 2500,
+      panelClass: 'custom-style-warn',
     });
   }
 }

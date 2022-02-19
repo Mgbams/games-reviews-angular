@@ -4,15 +4,15 @@
       <div>
         <mat-form-field class="form-field" appearance="outline">
           <mat-label> Pseudo </mat-label>
-          <input matInput formControlName="pseudo" required />
+          <input matInput formControlName="pseudonym" required />
           <mat-error
             *ngIf="
-              signupFormControls['pseudo'].invalid &&
-              (signupFormControls['pseudo'].dirty ||
-                signupFormControls['pseudo'].touched)
+              signupFormControls['pseudonym'].invalid &&
+              (signupFormControls['pseudonym'].dirty ||
+                signupFormControls['pseudonym'].touched)
             "
           >
-            <span *ngIf="signupFormControls['pseudo'].errors?.['required']"
+            <span *ngIf="signupFormControls['pseudonym'].errors?.['required']"
               >Pseudo is required</span
             >
           </mat-error>
@@ -41,7 +41,7 @@
           <input
             matInput
             [matDatepicker]="datepicker"
-            formControlName="dateOfBirth"
+            formControlName="birth_date"
           />
           <mat-datepicker-toggle
             matSuffix
@@ -57,12 +57,12 @@
           </mat-datepicker>
           <mat-error
             *ngIf="
-              signupFormControls['dateOfBirth'].invalid &&
-              (signupFormControls['dateOfBirth'].dirty ||
-                signupFormControls['dateOfBirth'].touched)
+              signupFormControls['birth_date'].invalid &&
+              (signupFormControls['birth_date'].dirty ||
+                signupFormControls['birth_date'].touched)
             "
           >
-            <span *ngIf="signupFormControls['dateOfBirth'].errors?.['required']"
+            <span *ngIf="signupFormControls['birth_date'].errors?.['required']"
               >Date of birth is required</span
             >
           </mat-error>

@@ -10,7 +10,7 @@ import { AddGameService } from '../services/add-game.service';
 })
 export class PaginatorComponent implements OnInit {
   @Input() pageSize!: number;
-  @Input() pageSizeOptions!: number[];
+ // @Input() pageSizeOptions!: number[];
   @Input() length!: number;
   @Output() ChangePageOnClick: EventEmitter<any> = new EventEmitter<any>();
 
