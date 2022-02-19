@@ -42,26 +42,14 @@ export class GameDescriptionComponent implements OnInit {
 
     this.requestApiService.getSingleGame(this.idGame)
       .subscribe({
-        next: (value: Number) => {
+        next: (value: any) => {
           this.response = value;
-          console.log(value);
         },
         error: (error) => {
           this.router.navigate(['**']);
         }
              
       });
-      
-      // this.requestApiService.getSingleGame(this.idGame)
-      // .subscribe({
-      //   next: (value: any) => {
-      //     this.response = value;
-      //   },
-      //   error : () => {
-      //     this.router.navigate(['/error']);
-      //   }
-        
-      // });
     }
     
   ngOnInit(): void {
@@ -69,7 +57,8 @@ export class GameDescriptionComponent implements OnInit {
   }
 
   public addReview(id: number) {
-    console.log(id);
+      this.router.navigate(['/add-review']);
+
   }
 
   public modifyGame(id: number) {

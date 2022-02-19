@@ -9,6 +9,9 @@ import { Classification } from '../model/classification.model';
 import { Genre } from '../model/genre.model';
 import { Publisher } from '../model/publisher.model';
 import { BusinessModel } from '../model/model_business.model';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+import { isLogStatus } from '../model/log-status.model';
 
 @Component({
   selector: 'app-add-game',
@@ -27,11 +30,15 @@ export class AddGameComponent implements OnInit {
   submitted = false;
   notificationDurationInSeconds = 4;
 
+  public isLogStatus! : isLogStatus;
+
   constructor(
     private formBuilder: FormBuilder,
     private dialogService: DialogService,
     private notification: MatSnackBar,
-    private addGameService: AddGameService
+    private addGameService: AddGameService,
+    private auth: AuthService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +61,11 @@ export class AddGameComponent implements OnInit {
       moderatorId: '',
       picture: '',
     });
+
+    this.isLogStatus = this.auth.isAuthenticated();
+    if(this.isLogStatus.role !== "Moderator") {
+      this.router.navigate(['home'])
+    }
   }
 
   get addGameFormControls() {
