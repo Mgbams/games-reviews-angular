@@ -52,6 +52,16 @@ export class GameDescriptionComponent implements OnInit {
              
       });
       
+      // this.requestApiService.getSingleGame(this.idGame)
+      // .subscribe({
+      //   next: (value: any) => {
+      //     this.response = value;
+      //   },
+      //   error : () => {
+      //     this.router.navigate(['/error']);
+      //   }
+        
+      // });
     }
     
   ngOnInit(): void {
