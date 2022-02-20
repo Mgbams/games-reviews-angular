@@ -10,7 +10,6 @@ import { DialogService } from '../shared/dialog.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ExcelService } from '../services/excel.service';
 import { MatDialog } from '@angular/material/dialog';
-import { UploadImageComponent } from '../upload-image/upload-image.component';
 
 @Component({
   selector: 'app-list-jeux',
@@ -108,10 +107,7 @@ export class ListJeuxComponent implements OnInit, AfterViewInit {
   getGames(): void {
     this.homePageService.getGames().subscribe({
       next: (data) => {
-        // this.games = data['content'];
-        // this.pageSizeOptions = data['pageable'];
         this.length = data.totalElements;
-        // this.pageSize = data.totalPages;
       },
       error: (error) => (this.msgError = error),
     });
@@ -124,7 +120,6 @@ export class ListJeuxComponent implements OnInit, AfterViewInit {
 
   nextPage(event: any) {
     this.games = event['content'];
-    //this.pageSizeOptions = event['pageable'];
     this.length = event.totalElements;
     this.pageSize = event.totalPages;
   }
@@ -136,10 +131,6 @@ export class ListJeuxComponent implements OnInit, AfterViewInit {
   editGame(game: Game) {
     this.route.navigate(['edit-game', game.id]);
   }
-
-  /*uploadGame(game: Game) {
-    this.route.navigate(["uploadImage", game.id])
-  }*/
 
   deletGame(game: Game) {
     this.openOnDeleteRequest(game);
@@ -161,7 +152,6 @@ export class ListJeuxComponent implements OnInit, AfterViewInit {
             error: () => this.errorDuringDeletion(),
           });
         } else {
-          // this.temporaryData = this.signUpForm.value; TODO
           return;
         }
       });
@@ -186,16 +176,6 @@ export class ListJeuxComponent implements OnInit, AfterViewInit {
   }
 
   uploadImage(game: Game) {
-
-    const dialogRef = this.dialog.open(UploadImageComponent, {
-      width: '50vw',
-      height: '50vh',
-      data: {id: 1},
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log;
-    });
+    this.route.navigate(['uploadImage', game.id]);
   }
-  
 }

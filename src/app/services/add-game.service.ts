@@ -95,9 +95,12 @@ export class AddGameService {
   }
 
   //Configure the link later
+  // saveGameImageUrl: 'http://localhost:8080/api/games/multipart',
   public uploadImg(id: number, gameImage: any): Observable<any> {
+    console.log(id);
+    console.log(gameImage);
     return this.httpClient.put<any>(
-      `${this.BASE_URL.saveGameImageUrl}`,
+      `${this.BASE_URL.saveGameImageUrl}/${id}`,
       gameImage,
       { observe: 'response' }
     );

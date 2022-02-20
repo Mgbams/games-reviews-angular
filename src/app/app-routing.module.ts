@@ -19,6 +19,7 @@ const routes: Routes = [
     {path: 'add-review', component: AddReviewComponent, canActivate:[AuthGuardGuard]},
     {path: 'add-game', component: AddGameComponent, canActivate:[AuthGuardGuard]},
     {path: 'gameDescription/:idGame', component: GameDescriptionComponent},
+    {path: 'uploadImage/:id', component: UploadImageComponent},
     {path: '', redirectTo: '/home', pathMatch: "full"},
     {path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
