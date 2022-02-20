@@ -1,7 +1,7 @@
 <div class="game-list-container">
-  <mat-card class="mat-card">
+  <!-- <mat-card class="mat-card"> -->
     <h1 >Upload Image</h1>
-    <mat-card-content>
+    <!-- <mat-card-content> -->
       <div class="mat-elevation-z8">
         <form
         [formGroup]="imageUploadForm" 
@@ -10,7 +10,7 @@
         >
           <!--FILE UPLOAD-->
           <div class="file-upload-container">
-            <input type="file" (change)="onFileChanged($event)" />
+            <input type="file" (change)="onFileChanged($event)" formControlName="picture"/>
           </div>
 
           <div>
@@ -30,6 +30,6 @@
           </div>
         </form>
       </div>
-    </mat-card-content>
-  </mat-card>
+    <!-- </mat-card-content> -->
+  <!-- </mat-card> -->
 </div>

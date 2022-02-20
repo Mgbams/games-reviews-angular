@@ -25,7 +25,7 @@ export class UploadImageComponent implements OnInit {
   uploadImageData!: any;
 
   gameId!: number;
-  imageUploadForm!: FormGroup;
+  public imageUploadForm!: FormGroup;
 
   constructor(
     private addGameService: AddGameService,

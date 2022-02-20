@@ -10,6 +10,8 @@ import { DialogService } from '../shared/dialog.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ExcelService } from '../services/excel.service';
 import { MatDialog } from '@angular/material/dialog';
+import { isLogStatus } from '../model/log-status.model';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-list-jeux',
@@ -31,6 +33,7 @@ export class ListJeuxComponent implements OnInit, AfterViewInit {
 
   games: Game[] = [];
   msgError = '';
+  public isLogStatus! : isLogStatus;
 
   displayedColumns: string[] = ['image', 'name', 'publisher', 'operations'];
   dataSource = new MatTableDataSource<Game>(this.games);
@@ -45,11 +48,17 @@ export class ListJeuxComponent implements OnInit, AfterViewInit {
     private dialogService: DialogService,
     private notification: MatSnackBar,
     private excelService: ExcelService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private auth: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getPageableGames();
+    this.isLogStatus = this.auth.isAuthenticated();
+    if(this.isLogStatus.role !== "Moderator") {
+      this.router.navigate(['home'])
+    }
   }
 
   ngAfterViewInit() {
@@ -132,6 +141,10 @@ export class ListJeuxComponent implements OnInit, AfterViewInit {
     this.route.navigate(['edit-game', game.id]);
   }
 
+  goToReviewList() {
+    this.route.navigate(['reviews/moderate']);
+
+  }
   deletGame(game: Game) {
     this.openOnDeleteRequest(game);
   }

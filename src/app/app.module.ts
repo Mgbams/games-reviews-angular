@@ -19,7 +19,7 @@ import { ListJeuxComponent } from './list-jeux/list-jeux.component';
 import { AddReviewComponent } from './add-review/add-review.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AddGameComponent } from './add-game/add-game.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
@@ -53,6 +53,7 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
     ReviewComponent,
     ModeratorReviewsComponent,
     PaginationComponent,
+    UploadImageComponent
   ],
     imports: [
         BrowserModule,
@@ -63,13 +64,8 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
         BrowserAnimationsModule,
         HttpClientModule,
         MatTabsModule,
-        BrowserModule,
-      AppRoutingModule,
-      MaterialModule,
-      ReactiveFormsModule,
-      MatFormFieldModule,
-      BrowserAnimationsModule,
-      HttpClientModule
+        FormsModule
+        
     ],
   providers: [
     UploadImageComponent,
