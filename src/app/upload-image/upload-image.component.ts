@@ -40,9 +40,9 @@ export class UploadImageComponent implements OnInit {
       this.gameId = +params['id'];
     });
 
-    this.imageUploadForm = this.formBuilder.group({
+   /* this.imageUploadForm = this.formBuilder.group({
       picture: [null],
-    });
+    });*/
   }
 
   successfulSubmit() {

@@ -176,6 +176,6 @@ export class ListJeuxComponent implements OnInit, AfterViewInit {
   }
 
   uploadImage(game: Game) {
-    this.route.navigate(['uploadImage', game.id]);
+    this.route.navigate(['/uploadImage', game.id]);
   }
 }
