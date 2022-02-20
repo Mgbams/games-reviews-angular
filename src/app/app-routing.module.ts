@@ -7,17 +7,18 @@ import { HomeComponent } from './home/home.component';
 import { ListAvisComponent } from './list-avis/list-avis.component';
 import { ListJeuxComponent } from './list-jeux/list-jeux.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PaginatorComponent } from './paginator/paginator.component';
+import { UploadImageComponent } from './upload-image/upload-image.component';
 
 const routes: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'game-lists', component: ListJeuxComponent},
     {path: 'review-lists', component: ListAvisComponent},
-    {path: 'add-review', component: AddReviewComponent},
+    {path: 'add-review/:id', component: AddReviewComponent},
     {path: 'add-game', component: AddGameComponent},
-    {path: '', redirectTo: '/home', pathMatch: "full"},
+    {path: 'edit-game/:id', component: AddGameComponent},
     {path: 'gameDescription/:idGame', component: GameDescriptionComponent},
-    {path: 'paginator', component: PaginatorComponent},
+    {path: '', redirectTo: '/home', pathMatch: "full"},
+    {path: '', redirectTo: '/home', pathMatch: "full"},
     {path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
 

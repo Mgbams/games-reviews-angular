@@ -22,6 +22,9 @@ import { AddGameComponent } from './add-game/add-game.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { PaginatorComponent } from './paginator/paginator.component';
+import { DatePipe } from '@angular/common';
+import { ExcelService } from './services/excel.service';
+import { UploadImageComponent } from './upload-image/upload-image.component';
 
 
 @NgModule({
@@ -41,6 +44,7 @@ import { PaginatorComponent } from './paginator/paginator.component';
     PageNotFoundComponent,
     AddGameComponent,
     PaginatorComponent,
+    UploadImageComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,8 +55,8 @@ import { PaginatorComponent } from './paginator/paginator.component';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [DatePipe, ExcelService],
   bootstrap: [AppComponent],
-  entryComponents: [SignupComponent, MatConfirmDialogComponent]
+  entryComponents: [SignupComponent, MatConfirmDialogComponent, UploadImageComponent]
 })
 export class AppModule { }

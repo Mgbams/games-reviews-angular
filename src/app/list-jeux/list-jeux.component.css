@@ -40,7 +40,42 @@ th {
 .add-game-button {
     margin-right: 10px;
 }
-  
+
+.game-list-card {
+  margin-bottom: 40px;
+}
+
+.film-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep .custom-style {
+  background-color: green;
+  color: white;
+}
+
+::ng-deep .custom-style-error {
+  background-color: red;
+  color: white;
+}
+
+.download {
+  cursor: pointer;
+  margin-bottom: 15px;
+  background-color: transparent;
+  border: none;
+}
+
+.download-text {
+  margin-right: 5px;
+  color: white;
+  font-size: 16px;
+}
   
 @media screen and (max-width: 700px) {
     th {

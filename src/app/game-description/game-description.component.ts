@@ -10,7 +10,8 @@ import { RequestApiService } from '../services/request-api.service';
   styleUrls: ['./game-description.component.css']
 })
 export class GameDescriptionComponent implements OnInit {
-
+ 
+  serverImgUrl = 'http://localhost:8080/images/';
   public idGame: any;
   public response: any;
   public isLogStatus = {
@@ -70,6 +71,7 @@ export class GameDescriptionComponent implements OnInit {
 
   public addReview(id: number) {
     console.log(id);
+    this.router.navigate(['add-review', this.idGame]);
   }
 
   public modifyGame(id: number) {

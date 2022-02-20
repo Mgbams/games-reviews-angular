@@ -6,7 +6,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Review } from '../model/reviews.model';
 
 const ELEMENT_DATA: Review[] = [
-  {
+ /* {
     id: 1,
     description: 'yello page',
     moderationDate: new Date(20 / 11 / 2019),
@@ -83,7 +83,7 @@ const ELEMENT_DATA: Review[] = [
     image: '4.jpg',
     name: 'Justin',
     publisher: 'Sly Boy',
-  },
+  },*/
 ];
 
 @Component({

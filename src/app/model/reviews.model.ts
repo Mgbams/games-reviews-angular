@@ -1,13 +1,14 @@
+import { Game } from "./game.model";
+import { Moderator } from "./moderator.model";
+import { Player } from "./player.model";
+
 export interface Review {
-  id: number;
+  id?: number;
   description: string;
-  moderationDate: Date;
-  publicationDate: Date;
+  moderation_date_time?: Date;
+  publication_date_time?: Date;
   score: number;
-  gameId: number;
-  moderatorId: number;
-  playerId: number;
-  image: string;
-  name: string;
-  publisher: string;
+  game: Game;
+  moderator_id?: Moderator;
+  player_id: Player;
 }

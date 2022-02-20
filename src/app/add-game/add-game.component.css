@@ -48,6 +48,14 @@ form {
   color: white;
 }
 
+.edit {
+  background-color: #fdee30;
+}
+
+.saveButton {
+  font-size: 18px;
+}
+
 @media screen and (max-width: 900px) {
   .mat-field-spacer {
     display: flex;

@@ -1,20 +1,32 @@
-<!--<div class="game-list-container">
+<div class="game-list-container">
   <mat-card class="game-list-card">
     <mat-card-title>GAME LISTS</mat-card-title>
+
+    <div class="export-container">
+      <button (click)="exportAsXLSX()" class="download">
+        <span class="download-text">Download : </span>
+        <i class="fa fa-file-excel-o" style="font-size: 26px; color:red; "></i>
+      </button>
+    </div>
 
     <mat-card-content>
       <div class="mat-elevation-z8">
         <table
           mat-table
-          [dataSource]="dataSource"
+          [dataSource]="games"
           matSort
           (matSortChange)="announceSortChange($event)"
           class="mat-elevation-z8"
         >
-    
           <ng-container matColumnDef="image">
             <th mat-header-cell *matHeaderCellDef>Image</th>
-            <td mat-cell *matCellDef="let element">{{ element.picture }}</td>
+            <td mat-cell *matCellDef="let element">
+              <img
+                src="{{serverImgUrl}}{{element.picture}}"
+                alt="{{ element.picture }}"
+                class="film-image"
+              />
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="name">
@@ -38,14 +50,13 @@
             >
               Publisher
             </th>
-            <td mat-cell *matCellDef="let element">{{ element.publisher }}</td>
+            <td mat-cell *matCellDef="let element">publisher</td>
           </ng-container>
 
           <ng-container matColumnDef="operations" class="operations-container">
             <th mat-header-cell *matHeaderCellDef>Operations</th>
             <div class="operations-button">
               <td mat-cell *matCellDef="let element">
-
                 <button
                   mat-icon-button
                   color="primary"
@@ -67,7 +78,7 @@
                 <button
                   mat-icon-button
                   color="primary"
-                  (click)="uploadGame(element)"
+                  (click)="uploadImage(element)"
                   title="Download"
                 >
                   <mat-icon>file_upload</mat-icon>
@@ -81,7 +92,6 @@
                 >
                   <mat-icon>delete_forever</mat-icon>
                 </button>
-            
               </td>
             </div>
           </ng-container>
@@ -89,19 +99,25 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
-
-        <mat-paginator
-          [pageSizeOptions]="[5, 10, 20]"
-          [hidePageSize]="true"
-          showFirstLastButtons
-          aria-label="Select page of games"
-        >
-        </mat-paginator>
       </div>
       <div class="reviews-button-container">
-        <button mat-raised-button class="add-game-button">Add a Game</button>
-        <button mat-raised-button class="review-lists--button">List of Reviews</button>
+        <button
+          mat-raised-button
+          class="add-game-button"
+          routerLink="/add-game"
+        >
+          Add a Game
+        </button>
+        <button mat-raised-button class="review-lists--button">
+          List of Reviews
+        </button>
       </div>
     </mat-card-content>
   </mat-card>
-</div>-->
+
+  <app-paginator
+    [pageSize]="pageSize"
+    (ChangePageOnClick)="nextPage($event)"
+    [length]="length"
+  ></app-paginator>
+</div>
