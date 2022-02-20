@@ -51,10 +51,13 @@ export class AddReviewComponent implements OnInit {
       ],
     });
 
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
-    this.getGame();
-
-    console.log('current user: ' + sessionStorage.getItem('currentUser'));
+    this.isLogStatus = this.auth.isAuthenticated();
+    if(this.isLogStatus.role !== "Player") {
+      this.router.navigate(['home'])
+    } else {
+      this.id = Number(this.route.snapshot.paramMap.get('id'));
+      this.getGame();
+    }
   }
 
   get addReviewFormControls() {
@@ -81,10 +84,7 @@ export class AddReviewComponent implements OnInit {
       error: () => this.errorDuringSubmission(),
     });
 
-    this.isLogStatus = this.auth.isAuthenticated();
-    if(this.isLogStatus.role !== "Player") {
-      this.router.navigate(['home'])
-    }
+
 
   }
 

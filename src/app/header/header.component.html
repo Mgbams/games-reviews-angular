@@ -9,7 +9,7 @@
         <button mat-stroked-button (click)="onLogin()">Login</button>
       </div>
       <div *ngIf="isLogin">
-        <button *ngIf='isLogStatus.role == "Moderator"' mat-stroked-button (click)="addGame()">Add Game</button>
+        <!-- <button *ngIf='isLogStatus.role == "Moderator"' mat-stroked-button (click)="addGame()">Add Game</button> -->
         <button *ngIf=' isLogStatus.role == "Moderator"' mat-stroked-button (click)="ModeratorPage()">Moderator Page</button>
         <button (click)="LogOut()" mat-raised-button color="warn">Log Off</button>
       </div>
@@ -25,7 +25,7 @@
         <button mat-menu-item (click)="onLogin()"><span>Login</span></button>
       </div>
       <div *ngIf="isLogin">
-        <button mat-menu-item *ngIf='isLogStatus.role == "Moderator"'  (click)="addGame()" color="warn"><span>Add Game</span></button>
+        <!-- <button mat-menu-item *ngIf='isLogStatus.role == "Moderator"'  (click)="addGame()" color="warn"><span>Add Game</span></button> -->
         <button mat-menu-item *ngIf='isLogStatus.role == "Moderator"'(click)="ModeratorPage()" color="warn"><span>Moderator Page</span></button>
         <button mat-menu-item (click)="LogOut()" color="warn"><span>Log Off</span></button>
       </div>
