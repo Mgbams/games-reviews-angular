@@ -22,6 +22,11 @@ import { AddGameComponent } from './add-game/add-game.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { PaginatorComponent } from './paginator/paginator.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
+import { ReviewComponent } from './components/reviews/review/review.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import { ModeratorReviewsComponent } from './pages/moderator-reviews/moderator-reviews.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 
 @NgModule({
@@ -41,16 +46,21 @@ import { PaginatorComponent } from './paginator/paginator.component';
     PageNotFoundComponent,
     AddGameComponent,
     PaginatorComponent,
+    ReviewsComponent,
+    ReviewComponent,
+    ModeratorReviewsComponent,
+    PaginationComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MaterialModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    BrowserAnimationsModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        MaterialModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatTabsModule
+    ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [SignupComponent, MatConfirmDialogComponent]

@@ -8,6 +8,7 @@ import { ListAvisComponent } from './list-avis/list-avis.component';
 import { ListJeuxComponent } from './list-jeux/list-jeux.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PaginatorComponent } from './paginator/paginator.component';
+import { ModeratorReviewsComponent } from "./pages/moderator-reviews/moderator-reviews.component";
 
 const routes: Routes = [
     {path: 'home', component: HomeComponent},
@@ -18,7 +19,8 @@ const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: "full"},
     {path: 'gameDescription/:idGame', component: GameDescriptionComponent},
     {path: 'paginator', component: PaginatorComponent},
-    {path: '**', pathMatch: 'full', component: PageNotFoundComponent },
+    {path: 'reviews/moderate', component: ModeratorReviewsComponent},
+    {path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
 
 @NgModule({
