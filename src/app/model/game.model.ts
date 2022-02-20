@@ -15,6 +15,8 @@ export interface Game {
   businessModel: BusinessModel;
   classification: Classification;
   moderator: Moderator;
+  description?: string
+  releaseDate?: Date;
 }
 
 

@@ -45,8 +45,6 @@ mat-card-title-group {
   width: 100%;
 }
 
-
-
 mat-card-title-group div img {
   width: 100%;
 }
@@ -108,7 +106,8 @@ mat-card-subtitle {
 }
 
 .mat-card img {
-  width: 100%;
+  width: 177px;
+  height: auto;
 }
 
 .small-view-details {

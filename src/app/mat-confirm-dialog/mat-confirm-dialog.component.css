@@ -13,5 +13,32 @@
 .confirm-dialog-container  {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: 95%;
 }
+
+.buttons-container {
+    align-self: flex-end;
+    position: relative;
+}
+
+.message {
+    margin-top: -20px;
+    font-size: 18px;
+}
+
+.buttons-container button {
+    border-radius: 25px;
+    color: white;
+} 
+
+.buttons-container button:first-child {
+    margin-right: 10px;
+    background-color: firebrick;
+} 
+
+.buttons-container button:last-child {
+    color: firebrick;
+    border: 1px solid firebrick;
+} 
 

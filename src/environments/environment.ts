@@ -15,7 +15,10 @@ export const environment = {
     validatedReviewsUrl: 'http://localhost:8080/api/reviews',
     pendingReviewsUrl: 'http://localhost:8080/api/reviews/pending',
     validateReviewUrl: 'http://localhost:8080/api/reviews/validate',
-    deleteReviewUrl: 'http://localhost:8080/api/reviews/'
+    deleteReviewUrl: 'http://localhost:8080/api/reviews/',
+    addReview: 'http://localhost:8080/api/reviews/add',
   }
 };
+
+
 

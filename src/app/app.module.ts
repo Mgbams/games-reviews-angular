@@ -27,6 +27,9 @@ import { ReviewComponent } from './components/reviews/review/review.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import { ModeratorReviewsComponent } from './pages/moderator-reviews/moderator-reviews.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { DatePipe } from '@angular/common';
+import { ExcelService } from './services/excel.service';
+import { UploadImageComponent } from './upload-image/upload-image.component';
 
 
 @NgModule({
@@ -59,10 +62,21 @@ import { PaginationComponent } from './components/pagination/pagination.componen
         MatFormFieldModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        MatTabsModule
+        MatTabsModule,
+        BrowserModule,
+      AppRoutingModule,
+      MaterialModule,
+      ReactiveFormsModule,
+      MatFormFieldModule,
+      BrowserAnimationsModule,
+      HttpClientModule
     ],
-  providers: [],
+  providers: [
+    UploadImageComponent,
+    DatePipe, 
+    ExcelService
+  ],
   bootstrap: [AppComponent],
-  entryComponents: [SignupComponent, MatConfirmDialogComponent]
+  entryComponents: [SignupComponent, MatConfirmDialogComponent, UploadImageComponent]
 })
 export class AppModule { }

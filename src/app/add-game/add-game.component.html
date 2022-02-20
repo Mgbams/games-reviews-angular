@@ -1,6 +1,6 @@
 <div class="game-list-container">
   <mat-card class="mat-card">
-    <h1>Add Game</h1>
+    <h1>{{pageTitle }}</h1>
     <mat-card-content>
       <div class="mat-elevation-z8">
         <form
@@ -29,7 +29,10 @@
               <mat-label>Publisher</mat-label>
               <mat-select formControlName="publisher">
                 <mat-option>--</mat-option>
-                <mat-option *ngFor="let item of publishers" [value]="item">
+                <mat-option
+                  *ngFor="let item of publishers"
+                  [value]="gameId ? item.name : item"
+                >
                   {{ item.name }}
                 </mat-option>
               </mat-select>
@@ -51,65 +54,51 @@
           <div>
             <div>
               <mat-form-field
-              appearance="outline"
-              class="birthday-form-field mat-form-field"
-            >
-              <mat-label> Date published </mat-label>
-              <input
-                matInput
-                [matDatepicker]="datepicker"
-                formControlName="releaseDate"
-                class="releaseDate"
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="datepicker"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #datepicker>
-                <mat-datepicker-actions>
-                  <button mat-button matDatepickerCancel>Cancel</button>
-                  <button mat-raised-button color="primary" matDatepickerApply>
-                    Apply
-                  </button>
-                </mat-datepicker-actions>
-              </mat-datepicker>
-              <mat-error
-                *ngIf="
-                  addGameFormControls['releaseDate'].invalid &&
-                  (addGameFormControls['releaseDate'].dirty ||
-                    addGameFormControls['releaseDate'].touched)
-                "
+                appearance="outline"
+                class="birthday-form-field mat-form-field"
               >
-                <span
-                  *ngIf="addGameFormControls['releaseDate'].errors?.['required']"
-                  >Released date required</span
+                <mat-label> Date published </mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="datepicker"
+                  formControlName="releaseDate"
+                  class="releaseDate"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="datepicker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #datepicker>
+                  <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancel</button>
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      matDatepickerApply
+                    >
+                      Apply
+                    </button>
+                  </mat-datepicker-actions>
+                </mat-datepicker>
+                <mat-error
+                  *ngIf="
+                    addGameFormControls['releaseDate'].invalid &&
+                    (addGameFormControls['releaseDate'].dirty ||
+                      addGameFormControls['releaseDate'].touched)
+                  "
                 >
-              </mat-error>
-            </mat-form-field>
+                  <span
+                    *ngIf="addGameFormControls['releaseDate'].errors?.['required']"
+                    >Released date required</span
+                  >
+                </mat-error>
+              </mat-form-field>
             </div>
           </div>
 
+          <!--FILE UPLOAD-->
           <div class="file-upload-container">
-            <input
-              formControlName="fileName"
-              id="file"
-              type="file"
-              accept="image/*"
-              (change)="onFileChange($event)"
-            />
-            <p
-              *ngIf="
-                addGameFormControls['fileName'].invalid &&
-                (addGameFormControls['fileName'].dirty ||
-                  addGameFormControls['fileName'].touched)
-              "
-            >
-              <span
-                *ngIf="addGameFormControls['fileName'].errors?.['required']"
-                class="error"
-                >Image is required</span
-              >
-            </p>
+            <input type="file" (change)="onFileChanged($event)" />
           </div>
 
           <div>
@@ -141,7 +130,10 @@
               <mat-label>Genre</mat-label>
               <mat-select formControlName="genre">
                 <mat-option>--</mat-option>
-                <mat-option *ngFor="let genre of genres" [value]="genre">
+                <mat-option
+                  *ngFor="let genre of genres"
+                  [value]="gameId ? genre.name : genre"
+                >
                   {{ genre.name }}
                 </mat-option>
               </mat-select>
@@ -164,7 +156,7 @@
                 <mat-option>--</mat-option>
                 <mat-option
                   *ngFor="let item of classification"
-                  [value]="item"
+                  [value]="gameId ? item.name : item"
                 >
                   {{ item.name }}
                 </mat-option>
@@ -188,9 +180,11 @@
             <mat-form-field appearance="outline" class="platforms">
               <mat-label>Platform(s)</mat-label>
               <mat-select formControlName="platforms" multiple>
-                <mat-option *ngFor="let item of platforms" [value]="item">{{
-                  item.name
-                }}</mat-option>
+                <mat-option
+                  *ngFor="let item of platforms"
+                  [value]="gameId ? item.name : item"
+                  >{{ item.name }}</mat-option
+                >
               </mat-select>
               <mat-error
                 *ngIf="
@@ -212,7 +206,7 @@
                 <mat-option>--</mat-option>
                 <mat-option
                   *ngFor="let item of businessModels"
-                  [value]="item"
+                  [value]="gameId ? item.name : item"
                 >
                   {{ item.name }}
                 </mat-option>
@@ -238,8 +232,9 @@
               color="primary"
               type="submit"
               class="saveButton"
+              [ngClass]="actionBtn == 'Edit' ? 'edit' : 'create'"
             >
-              Save
+              {{ actionBtn }}
             </button>
           </div>
         </form>

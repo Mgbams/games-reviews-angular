@@ -19,6 +19,8 @@ export class HomeComponent implements OnInit {
   pageSizeOptions!: number[];
   length!: number;
 
+  serverImgUrl = 'http://localhost:8080/images/';
+
   // Pagination initial data
   initialPageStart = 0;
   initialPageEnd = 6;
@@ -128,7 +130,7 @@ export class HomeComponent implements OnInit {
 
   moreDetails(id: number): void {
     const updateId = Number(id);
-    this.route.navigate(['/gameDescription', updateId]);
+    this.route.navigate(['gameDescription', updateId]);
   }
 
   nextPage(event: any) {

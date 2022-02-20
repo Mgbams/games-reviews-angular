@@ -97,8 +97,6 @@ export class SignupComponent implements OnInit {
       birth_date: this.formatBirthDate(),
     });
 
-    console.log(this.signUpForm.get('birth_date')?.value);
-
     this.loginService.postPlayer(this.signUpForm.value).subscribe({
       next: () => {
         this.successfulSubmit();
@@ -114,7 +112,6 @@ export class SignupComponent implements OnInit {
 
   // cancelling registration
   onRegistrationCancel() {
-    console.log(this.signUpForm.value);
     this.dialogService
       .openConfirmDialog('Are you sure you want to exit your registration?')
       .afterClosed()

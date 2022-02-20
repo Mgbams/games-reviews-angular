@@ -59,16 +59,51 @@ export class AddGameService {
   public postGameImage(gameImage: any): Observable<any> {
     return this.httpClient.post<any>(
       `${this.BASE_URL.saveGameImageUrl}`,
-      gameImage
+      gameImage,
+      { observe: 'response' }
     );
   }
 
   public getPageableGames(page: number, size: number): Observable<any> {
-    return this.httpClient.get(`${this.BASE_URL.pageableGameBaseUrl}?page=${page}&size=${size}`);
+    return this.httpClient.get(
+      `${this.BASE_URL.pageableGameBaseUrl}?page=${page}&size=${size}`
+    );
   }
 
-  // TO DO
   public deleteGame(id: number) {
+    console.log('id: ' + id);
     return this.httpClient.delete(`${this.BASE_URL.gameBaseUrl}/${id}`);
   }
+
+  public getSingleGame(id: number): Observable<any> {
+    return this.httpClient.get(`${this.BASE_URL.gameBaseUrl}/${id}`);
+  }
+
+  public updateGame(game: Game, id: number): Observable<Game> {
+    return this.httpClient.put<Game>(
+      `${this.BASE_URL.gameBaseUrl}/${id}`,
+      game
+    );
+  }
+
+  public updateGameImage(gameImage: any): Observable<any> {
+    return this.httpClient.put<any>(
+      `${this.BASE_URL.saveGameImageUrl}`,
+      gameImage,
+      { observe: 'response' }
+    );
+  }
+
+  //Configure the link later
+  // saveGameImageUrl: 'http://localhost:8080/api/games/multipart',
+  public uploadImg(id: number, gameImage: any): Observable<any> {
+    console.log(id);
+    console.log(gameImage);
+    return this.httpClient.put<any>(
+      `${this.BASE_URL.saveGameImageUrl}/${id}`,
+      gameImage,
+      { observe: 'response' }
+    );
+  }
 }
+

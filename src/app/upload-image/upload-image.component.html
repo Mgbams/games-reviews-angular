@@ -1,0 +1,35 @@
+<div class="game-list-container">
+  <mat-card class="mat-card">
+    <h1 >Upload Image</h1>
+    <mat-card-content>
+      <div class="mat-elevation-z8">
+        <form
+        [formGroup]="imageUploadForm" 
+          enctype="multipart/form-data"
+          class="upload-form"
+        >
+          <!--FILE UPLOAD-->
+          <div class="file-upload-container">
+            <input type="file" (change)="onFileChanged($event)" />
+          </div>
+
+          <div>
+            <input type="picture" type="hidden" />
+          </div>
+
+          <div>
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              class="uploaadButton"
+              (click)="onSubmit()"
+            >
+              Upload
+            </button>
+          </div>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
