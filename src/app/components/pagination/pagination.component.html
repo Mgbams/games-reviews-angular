@@ -1,0 +1,6 @@
+<mat-paginator [length]="pageable.totalElements"
+               [pageSize]=pageable.size [pageSizeOptions]="[5, 10, 15, 20]"
+               (page)="onPageChange($event)"
+               showFirstLastButtons
+               aria-label="Select page">
+</mat-paginator>

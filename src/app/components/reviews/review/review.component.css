@@ -1,0 +1,8 @@
+.review {
+  margin: 1rem;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}

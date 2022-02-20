@@ -1,8 +1,11 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AddGameService } from '../services/add-game.service';
 import { AuthService } from '../services/auth.service';
 import { RequestApiService } from '../services/request-api.service';
+import { DialogService } from '../shared/dialog.service';
 
 @Component({
   selector: 'app-game-description',
@@ -39,7 +42,10 @@ export class GameDescriptionComponent implements OnInit {
     private requestApiService: RequestApiService,
     private route: ActivatedRoute,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private notification: MatSnackBar,
+    private dialogService: DialogService,
+    private homePageService: AddGameService,
   ) {
     this.idGame = Number(this.route.snapshot.paramMap.get('idGame'));
 
@@ -67,5 +73,42 @@ export class GameDescriptionComponent implements OnInit {
   }
   public deleteGame(id: number) {
     console.log(id);
+      // cancelling registration
+
+    this.dialogService
+      .openConfirmDialog('Are you sure you want to delete this game?')
+      .afterClosed()
+      .subscribe((res) => {
+        if (res) {
+          this.homePageService.deleteGame(id).subscribe({
+            next: () => {
+              //this.openOnDeleteRequest();
+              this.successfulDeletion();
+              this.router.navigate(['/']);
+            },
+            error: () => this.errorDuringDeletion(),
+          });
+        } else {
+          return;
+        }
+      });
+  
+  }
+  successfulDeletion() {
+    this.notification.open(`Game successfully deleted!`, undefined, {
+      verticalPosition: 'top',
+      horizontalPosition: 'end',
+      duration: 2500,
+      panelClass: 'custom-style',
+    });
+  }
+
+  errorDuringDeletion() {
+    this.notification.open("Game couldn't be deleted", undefined, {
+      verticalPosition: 'top',
+      horizontalPosition: 'end',
+      duration: 2500,
+      panelClass: 'custom-style-error',
+    });
   }
 }

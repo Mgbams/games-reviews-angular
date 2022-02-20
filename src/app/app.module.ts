@@ -22,6 +22,11 @@ import { AddGameComponent } from './add-game/add-game.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { PaginatorComponent } from './paginator/paginator.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
+import { ReviewComponent } from './components/reviews/review/review.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import { ModeratorReviewsComponent } from './pages/moderator-reviews/moderator-reviews.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 import { DatePipe } from '@angular/common';
 import { ExcelService } from './services/excel.service';
 import { UploadImageComponent } from './upload-image/upload-image.component';
@@ -44,18 +49,33 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
     PageNotFoundComponent,
     AddGameComponent,
     PaginatorComponent,
+    ReviewsComponent,
+    ReviewComponent,
+    ModeratorReviewsComponent,
+    PaginationComponent,
+  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        MaterialModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatTabsModule,
+        BrowserModule,
+      AppRoutingModule,
+      MaterialModule,
+      ReactiveFormsModule,
+      MatFormFieldModule,
+      BrowserAnimationsModule,
+      HttpClientModule
+    ],
+  providers: [
     UploadImageComponent,
+    DatePipe, 
+    ExcelService
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MaterialModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    BrowserAnimationsModule,
-    HttpClientModule
-  ],
-  providers: [DatePipe, ExcelService],
   bootstrap: [AppComponent],
   entryComponents: [SignupComponent, MatConfirmDialogComponent, UploadImageComponent]
 })

@@ -1,0 +1,12 @@
+<mat-tab-group mat-align-tabs="center" class="bg-white"
+               (selectedTabChange)="refreshPage($event)">
+
+  <mat-tab label="{{ pending }}">
+    <app-reviews [status]="pending"></app-reviews>
+  </mat-tab>
+
+  <mat-tab label="{{ validated }}">
+    <app-reviews [status]="validated"></app-reviews>
+  </mat-tab>
+
+</mat-tab-group>
