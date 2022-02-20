@@ -37,6 +37,12 @@ export class AddGameComponent implements OnInit {
   gameId!: number;
   game!: Game;
 
+  //Get by name attributes
+  classificationByName!: Classification;
+  publisherByName!: Publisher;
+  genreByName!: Genre;
+  businessModelByName!: BusinessModel;
+
   //Trial attributes for file upload
   selectedFile!: File;
   retrievedImage: any;
@@ -45,7 +51,7 @@ export class AddGameComponent implements OnInit {
   message = '';
   imageName: any;
 
-  public isLogStatus! : isLogStatus;
+  public isLogStatus!: isLogStatus;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,7 +61,7 @@ export class AddGameComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private datepipe: DatePipe,
     private auth: AuthService,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -124,10 +130,9 @@ export class AddGameComponent implements OnInit {
       error: (error) => (this.msgError = error),
     });
     this.isLogStatus = this.auth.isAuthenticated();
-    if(this.isLogStatus.role !== "Moderator") {
-      this.router.navigate(['home'])
+    if (this.isLogStatus.role !== 'Moderator') {
+      this.router.navigate(['home']);
     }
-    
   }
 
   get addGameFormControls() {
@@ -135,10 +140,7 @@ export class AddGameComponent implements OnInit {
   }
 
   onSubmit() {
-    let publishedDate =  this.datepipe.transform(
-      new Date(),
-      'yyyy-MM-dd'
-    );
+    let publishedDate = this.datepipe.transform(new Date(), 'yyyy-MM-dd');
 
     // TODO when project is
     // initialization of variables
@@ -155,7 +157,7 @@ export class AddGameComponent implements OnInit {
     this.addGameForm.patchValue({
       moderatorId: moderator,
       releaseDate: publishedDate,
-      picture: this.selectedFile.name
+      picture: this.selectedFile.name,
     });
 
     // If we are not editing the form
@@ -168,17 +170,44 @@ export class AddGameComponent implements OnInit {
   }
 
   createGame() {
+    console.log(this.addGameForm.value);
+
     this.addGameService.postGame(this.addGameForm.value).subscribe({
       next: () => {
         this.successfulSubmit();
-         //UploadImage
-         this.onUpload();
+        //UploadImage
+        this.onUpload();
       },
       error: () => this.errorDuringSubmission(),
     });
   }
 
   updateGame(): void {
+    console.log(this.addGameForm.value);
+    const classification = this.getClassificationByName(
+      this.addGameForm.get('classification')?.value.trim()
+    );
+
+    const publisher = this.getPublisherByName(
+      this.addGameForm.get('publisher')?.value
+    );
+
+    const genre = this.getGenreByName(this.addGameForm.get('genre')?.value);
+
+    const businessModel = this.getBusinessModelByName(
+      this.addGameForm.get('businessModel')?.value
+    );
+
+    // patch values before updating
+    this.addGameForm.patchValue({
+      publisher: publisher,
+      genre: genre,
+      classification: classification,
+      businessModel: businessModel,
+    });
+
+    console.log(this.addGameForm.value);
+  
     this.addGameService
       .updateGame(this.addGameForm.value, this.gameId)
       .subscribe({
@@ -274,21 +303,19 @@ export class AddGameComponent implements OnInit {
   }
 
   /*
-  * Uploading image logic
-  *Gets called when the user selects an image
-  */
+   * Uploading image logic
+   *Gets called when the user selects an image
+   */
   public onFileChanged(event: any) {
     this.selectedFile = event.target?.files[0];
   }
 
   //Gets called when the user clicks on submit to upload the image
   onUpload() {
-    this.addGameService
-      .postGameImage(this.uploadedImage())
-      .subscribe({
-        next: () => console.log,
-        error: () => this.imageErrorDuringSubmission(),
-      });
+    this.addGameService.postGameImage(this.uploadedImage()).subscribe({
+      next: () => console.log,
+      error: () => this.imageErrorDuringSubmission(),
+    });
   }
 
   uploadedImage() {
@@ -302,4 +329,35 @@ export class AddGameComponent implements OnInit {
     return uploadImageData;
   }
 
+  // Get by name
+  getClassificationByName(name: string): void {
+    this.addGameService.getClassificationByName(name).subscribe({
+      next: (res) => (this.classificationByName = res),
+      error: (err) => (this.msgError = err),
+    });
+  }
+
+  getPublisherByName(name: string): void {
+    this.addGameService.getClassificationByName(name).subscribe({
+      next: (res) => (this.publisherByName = res),
+      error: (err) => (this.msgError = err),
+    });
+  }
+
+  getGenreByName(name: string): void {
+    this.addGameService.getClassificationByName(name).subscribe({
+      next: (res) => (this.genreByName = res),
+      error: (err) => (this.msgError = err),
+    });
+  }
+  getBusinessModelByName(name: string): void {
+    this.addGameService.getClassificationByName(name).subscribe({
+      next: (res) => {
+        this.businessModelByName = res;
+        console.log(res);
+        console.log(this.businessModelByName);
+      },
+      error: (err) => (this.msgError = err),
+    });
+  }
 }

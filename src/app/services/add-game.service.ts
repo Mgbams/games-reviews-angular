@@ -95,7 +95,6 @@ export class AddGameService {
   }
 
   //Configure the link later
-  // saveGameImageUrl: 'http://localhost:8080/api/games/multipart',
   public uploadImg(id: number, gameImage: any): Observable<any> {
     console.log(id);
     console.log(gameImage);
@@ -105,5 +104,24 @@ export class AddGameService {
       { observe: 'response' }
     );
   }
+
+  public getClassificationByName(name: string): Observable<Classification> {
+    return this.httpClient.get<Classification>(`${this.BASE_URL.getClassificationByName}?name=${name}`);
+  }
+
+  public getPublisherByName(name: string): Observable<Publisher> {
+    return this.httpClient.get<Publisher>(`${this.BASE_URL.getPublisherByName}?name=${name}`);
+  }
+
+  public getBusinessModelByName(name: string): Observable<BusinessModel> {
+    return this.httpClient.get<BusinessModel>(`${this.BASE_URL.getBusinessModelByName}?name=${name}`);
+  }
+
+  public getGenreByName(name: string): Observable<Genre> {
+    return this.httpClient.get<Genre>(`${this.BASE_URL.getGenreByName}?name=${name}`);
+  }
+
+
+
 }
 
