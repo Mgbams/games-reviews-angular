@@ -10,124 +10,52 @@
   </div>
 </div>
 
-<mat-grid-list cols="4" rowHeight="150px" gutterSize="20">
+<mat-grid-list cols="4" rowHeight="150px" gutterSize="20" class="slider-container">
   <mat-grid-tile colspan="3" rowspan="1" class="left-img">
     <p>THE NEW ORSYS CHALLENGE ROLLS OUT</p>
   </mat-grid-tile>
-  <mat-grid-tile colspan="1" rowspan="1" class="right-img"><p>NEW GAME IN TOWN</p> </mat-grid-tile>
+  <mat-grid-tile colspan="1" rowspan="1" class="right-img"
+    ><p>NEW GAME IN TOWN</p>
+  </mat-grid-tile>
 </mat-grid-list>
 
 <h3 class="home-page-game-lists">NEW GAMES IN THE BLOCK</h3>
 
-<div>
-  <mat-grid-list cols="12" rowHeight="100px" gutterSize="20">
-    <mat-grid-tile colspan="4" rowspan="3">
-      <mat-card class="first-card">
+<div class="grid-container" *ngIf="games">
+  <mat-grid-list [cols]="(cardsLayout | async)?.gridColumns" rowHeight="350px">
+    <mat-grid-tile
+      [colspan]="(cardsLayout | async)?.cols"
+      *ngFor="let game of games"
+    >
+      <mat-card class="game-card">
         <img
           mat-card-image
-          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+          src="{{ game.picture }}"
           alt="Photo of a Shiba Inu"
+          class="img"
         />
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-actions>
-          <button mat-raised-button color="warn" id="details">More Details</button>
-        </mat-card-actions>
+        <mat-card-content class="game-card-content">
+          <div>
+            <mat-card-title>{{ game.name }}</mat-card-title>
+            <mat-card-subtitle>{{ game.genre.name }}</mat-card-subtitle>
+            <div class="mat-card-actions">
+              <button
+                mat-raised-button
+                color="warn"
+                (click)="moreDetails(game.id)"
+              >
+                More Info
+              </button>
+              <p>
+                <span>5/20</span
+                ><mat-icon class="notes-stars">star_outline</mat-icon>
+              </p>
+            </div>
+          </div>
+        </mat-card-content>
       </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile colspan="4">
-      <div class="mat-card">
-        <div>
-          <img
-            mat-card-md-image
-            src="https://wallup.net/wp-content/uploads/2018/10/06/708282-kittens-kitten-cat-cats-baby-cute-s.jpg"
-          />
-        </div>
-        <div>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Medium</mat-card-subtitle>
-          <button mat-raised-button color="warn" class="small-view-details">More Details</button>
-        </div>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="4">
-      <div class="mat-card">
-        <div>
-          <img
-            mat-card-md-image
-            src="https://wallup.net/wp-content/uploads/2018/10/06/708282-kittens-kitten-cat-cats-baby-cute-s.jpg"
-          />
-        </div>
-        <div>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Medium</mat-card-subtitle>
-          <button mat-raised-button color="warn" class="small-view-details">More Details</button>
-        </div>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="4">
-      <div class="mat-card">
-        <div>
-          <img
-            mat-card-md-image
-            src="https://wallup.net/wp-content/uploads/2018/10/06/708282-kittens-kitten-cat-cats-baby-cute-s.jpg"
-          />
-        </div>
-        <div>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Medium</mat-card-subtitle>
-          <button mat-raised-button color="warn" class="small-view-details">More Details</button>
-        </div>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="4">
-      <div class="mat-card">
-        <div>
-          <img
-            mat-card-md-image
-            src="https://wallup.net/wp-content/uploads/2018/10/06/708282-kittens-kitten-cat-cats-baby-cute-s.jpg"
-          />
-        </div>
-        <div>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Medium</mat-card-subtitle>
-          <button mat-raised-button color="warn" class="small-view-details">More Details</button>
-        </div>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="4">
-      <div class="mat-card">
-        <div>
-          <img
-            mat-card-md-image
-            src="https://wallup.net/wp-content/uploads/2018/10/06/708282-kittens-kitten-cat-cats-baby-cute-s.jpg"
-          />
-        </div>
-        <div>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Medium</mat-card-subtitle>
-          <button mat-raised-button color="warn" class="small-view-details">More Details</button>
-        </div>
-      </div>
-    </mat-grid-tile>
-
-    <mat-grid-tile colspan="4">
-      <div class="mat-card">
-        <div>
-          <img
-            mat-card-md-image
-            src="https://wallup.net/wp-content/uploads/2018/10/06/708282-kittens-kitten-cat-cats-baby-cute-s.jpg"
-          />
-        </div>
-        <div>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Medium</mat-card-subtitle>
-          <button mat-raised-button color="warn" class="small-view-details">More Details</button>
-        </div>
-      </div>
-    </mat-grid-tile>
   </mat-grid-list>
+
+  <app-paginator [pageSize]="pageSize" (ChangePageOnClick)="nextPage($event)" [length]="length" ></app-paginator>
 </div>

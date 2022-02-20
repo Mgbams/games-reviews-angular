@@ -1,0 +1,15 @@
+.error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    align-items: center;
+}

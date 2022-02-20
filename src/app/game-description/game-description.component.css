@@ -1,0 +1,52 @@
+.main_div {
+    margin: 50px;
+}
+p {
+    margin: 0;
+}
+.detail_div {
+    display: flex;
+}
+.text_detail {
+    width: 80%;
+}
+.img_div {
+    width: 20%;
+}
+
+.genre {
+    padding-bottom: 20px;
+}
+.business {
+    padding-bottom: 20px;
+}
+.platforms_div {
+    display: flex;
+    justify-content: space-between;
+    width: 23%;
+    padding-bottom: 100px;
+}
+.description {
+    width: 80%;
+}
+img{
+    width: 100%;
+}
+
+.button_action {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.review {
+    color: black;
+    background-color: cornsilk;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.review_info {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+}

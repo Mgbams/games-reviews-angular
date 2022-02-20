@@ -1,0 +1,123 @@
+<div class="signup-container">
+  <div class="form-container">
+    <form [formGroup]="signUpForm" (submit)="onSubmit()">
+      <div>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Pseudo </mat-label>
+          <input matInput formControlName="pseudonym" required />
+          <mat-error
+            *ngIf="
+              signupFormControls['pseudonym'].invalid &&
+              (signupFormControls['pseudonym'].dirty ||
+                signupFormControls['pseudonym'].touched)
+            "
+          >
+            <span *ngIf="signupFormControls['pseudonym'].errors?.['required']"
+              >Pseudo is required</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="mat-form-field-container"> 
+        <mat-form-field class="form-field mat-form-field" appearance="outline">
+          <mat-label> E-mail </mat-label>
+          <input matInput formControlName="email" required />
+          <mat-error
+            *ngIf="
+              signupFormControls['email'].invalid &&
+              (signupFormControls['email'].dirty ||
+                signupFormControls['email'].touched)
+            "
+          >
+            <span *ngIf="signupFormControls['email'].errors?.['required']"
+              >Email is required</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="birthday-form-field mat-form-field">
+          <mat-label> Birthday </mat-label>
+          <input
+            matInput
+            [matDatepicker]="datepicker"
+            formControlName="birth_date"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="datepicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #datepicker>
+            <mat-datepicker-actions>
+              <button mat-button matDatepickerCancel>Cancel</button>
+              <button mat-raised-button color="primary" matDatepickerApply>
+                Apply
+              </button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
+          <mat-error
+            *ngIf="
+              signupFormControls['birth_date'].invalid &&
+              (signupFormControls['birth_date'].dirty ||
+                signupFormControls['birth_date'].touched)
+            "
+          >
+            <span *ngIf="signupFormControls['birth_date'].errors?.['required']"
+              >Date of birth is required</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="mat-form-field-container">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Password </mat-label>
+          <input matInput formControlName="password" type="password" />
+          <mat-error
+            *ngIf="
+              signupFormControls['password'].invalid &&
+              (signupFormControls['password'].dirty ||
+                signupFormControls['password'].touched)
+            "
+          >
+            <span *ngIf="signupFormControls['password'].errors?.['required']"
+              >Password is required</span
+            >
+            <span *ngIf="signupFormControls['password'].errors?.['minlength']"
+              >Password must be atleast 8 characters</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Confirm Password </mat-label>
+          <input matInput formControlName="confirmPassword" type="password" />
+          <mat-error
+            *ngIf="
+              signupFormControls['confirmPassword'].invalid &&
+              (signupFormControls['confirmPassword'].dirty ||
+                signupFormControls['confirmPassword'].touched)
+            "
+          >
+            <span
+              *ngIf="signupFormControls['confirmPassword'].errors?.['required']"
+              >Confirm Password is required</span
+            >
+            <span
+              *ngIf="signupFormControls['confirmPassword'].errors?.['MustMatch']"
+              >Confirm password did not match</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="signUp-button"
+      >
+        Sign Up
+      </button>
+    </form>
+  </div>
+</div>

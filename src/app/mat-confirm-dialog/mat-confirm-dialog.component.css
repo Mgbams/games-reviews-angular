@@ -1,0 +1,17 @@
+.confirm-dialog-container .content-container {
+   margin: 5px 5px 15px 5px;
+   color: #8f9cb5;
+   display: flex;
+}
+
+.confirm-dialog-container #close-icon {
+    margin-left: auto;
+    order: 2;
+    font-weight: bolder;
+}
+
+.confirm-dialog-container  {
+    display: flex;
+    flex-direction: column;
+}
+

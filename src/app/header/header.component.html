@@ -1,18 +1,29 @@
 <nav>
   <mat-toolbar color="primary">
     <div>
-      <button
-        mat-icon-button
-        class="example-icon"
-        aria-label="Example icon-button with menu icon"
-      >
-        <mat-icon>menu</mat-icon>
-      </button>
+      <p class="website-title"><a href="">TEAM ONE GAMEZONE</a></p>
     </div>
     <div class="buttons">
-      <button mat-raised-button color="primary" class="signup-button">Signup</button>
-      <button mat-stroked-button>Login</button>
-      <button mat-raised-button color="warn">Log Off</button>
+      <button
+        mat-raised-button
+        class="signup-button"
+        (click)="onSignUp()"
+        *ngIf='!this.isLogStatus'
+      >
+        Signup
+      </button>
+      <button *ngIf='!this.isLogStatus' mat-stroked-button (click)="onLogin()">Login</button>
+      <button *ngIf='this.isLogStatus' (click)="LogOut()" mat-raised-button color="warn">Log Off</button>
     </div>
+
+    <button mat-icon-button  [matMenuTriggerFor]="menu" class="hamburger-menu" >
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="onSignUp()"><span>SignUp</span></button>
+      <button mat-menu-item (click)="onLogin()"><span>Login</span></button>
+      <button mat-menu-item color="warn"><span>Log Off</span></button>
+    </mat-menu>
   </mat-toolbar>
 </nav>

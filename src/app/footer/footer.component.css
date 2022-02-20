@@ -23,7 +23,7 @@ mat-icon {
 footer {
     background-color: #1D2228;
     color: white;
-    margin-top: 70px;
+    margin-top: 50px;
 }
 
 .footer-lang {
@@ -40,7 +40,7 @@ footer {
 
 mat-divider {
     background-color: whitesmoke;
-    width: 40vw;
+    width: 88vw;
     margin: auto;
 }
 

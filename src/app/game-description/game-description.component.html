@@ -1,0 +1,57 @@
+<div *ngIf="this.response" class="main_div">
+    <div class="title_game">
+        <h1>
+            {{this.response.name}}
+        </h1>
+    </div>
+    <div class="detail_div">
+        <div class="text_detail">
+            <div class="genre">
+                <p>
+                    {{this.response.genre.name}}
+                </p>
+            </div>
+            <div class="business">
+                <p>
+                    {{this.response.businessModel.name}} publié par {{this.response.publisher.name}}
+                </p>
+            </div>
+            <div class="platforms_div">
+                <div *ngFor="let platforms of this.response.platforms" >
+                    {{platforms.name}}
+                </div>
+            </div>
+            <div class="description">
+                <h3>Description : </h3>
+                <p>
+                    {{this.response.description}}
+                </p>
+            </div>
+        </div>
+        <div class="img_div">
+            <img src="{{response.picture}}" alt="{{this.response.name}}">
+        </div>
+    </div>
+    <div class="button_action">
+        <div *ngIf="this.isLogStatus && this.isLogStatus.role == 'Player'">
+            <button mat-raised-button (click)="addReview(response.id)">Ajouter un avis</button>
+        </div>
+        <div *ngIf="this.isLogStatus && this.isLogStatus.role == 'Moderator'">
+            <button mat-raised-button color="primary" (click)="modifyGame(response.id)">Modifier Jeu</button>
+            <button mat-raised-button color="warn" (click)="deleteGame(response.id)">Supprimer Jeu</button>
+        </div>
+    </div>
+    <div class="review_div">
+        <h1> Review : </h1>
+        <div *ngFor="let review of this.reviewGame" class="review">
+            <div class="review_info">
+                <p>{{review.name}}</p>
+                <p>{{review.datePublication}}</p>
+                <p>{{review.score}}</p>
+            </div>
+            <div>
+                <p>{{review.description}}</p>
+            </div>
+        </div>
+    </div>
+</div>

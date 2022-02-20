@@ -1,0 +1,8 @@
+<app-review *ngFor="let review of reviews"
+            [review]="review"
+            (refreshPage)="refreshReviews()">
+</app-review>
+
+<app-pagination (refreshPage)="refreshReviews()"
+                [pageable]="pageable">
+</app-pagination>

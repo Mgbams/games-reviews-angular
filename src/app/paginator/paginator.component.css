@@ -1,0 +1,15 @@
+.paginator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mat-paginator {
+    width: 30vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    border-right-color: #cfc547;
+    border-left-color: #cfc547;
+}
