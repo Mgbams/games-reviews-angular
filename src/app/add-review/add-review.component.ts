@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Review } from '../model/reviews.model';
 import { Player } from '../model/player.model';
 import { AddGameService } from '../services/add-game.service';
 import { ReviewsService } from '../services/reviews.service';
 import { Game } from '../model/game.model';
 import { DatePipe } from '@angular/common';
+import { isLogStatus } from '../model/log-status.model';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-add-review',
@@ -20,14 +22,18 @@ export class AddReviewComponent implements OnInit {
   private id!: number;
   private game!: Game;
   private msgError: string = '';
+  public isLogStatus!: isLogStatus;
 
   constructor(
     private notification: MatSnackBar,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private reviewGameService: ReviewsService,
-    private datepipe: DatePipe
+    private datepipe: DatePipe,
+    private auth: AuthService,
+    private router: Router,
   ) {}
+  
 
   ngOnInit(): void {
     this.addReviewForm = this.formBuilder.group({
@@ -74,6 +80,12 @@ export class AddReviewComponent implements OnInit {
       },
       error: () => this.errorDuringSubmission(),
     });
+
+    this.isLogStatus = this.auth.isAuthenticated();
+    if(this.isLogStatus.role !== "Player") {
+      this.router.navigate(['home'])
+    }
+
   }
 
   /*onSubmit() {

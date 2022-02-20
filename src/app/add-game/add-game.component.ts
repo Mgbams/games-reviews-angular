@@ -12,6 +12,9 @@ import { BusinessModel } from '../model/model_business.model';
 import { ActivatedRoute } from '@angular/router';
 import { Game } from '../model/game.model';
 import { DatePipe } from '@angular/common';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+import { isLogStatus } from '../model/log-status.model';
 
 @Component({
   selector: 'app-add-game',
@@ -26,6 +29,7 @@ export class AddGameComponent implements OnInit {
   businessModels: BusinessModel[] = [];
   msgError = '';
   actionBtn = 'Save';
+  pageTitle = 'Add Game';
 
   addGameForm!: FormGroup;
   submitted = false;
@@ -41,13 +45,17 @@ export class AddGameComponent implements OnInit {
   message = '';
   imageName: any;
 
+  public isLogStatus! : isLogStatus;
+
   constructor(
     private formBuilder: FormBuilder,
     private dialogService: DialogService,
     private notification: MatSnackBar,
     private addGameService: AddGameService,
     private activatedRoute: ActivatedRoute,
-    private datepipe: DatePipe
+    private datepipe: DatePipe,
+    private auth: AuthService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -86,8 +94,9 @@ export class AddGameComponent implements OnInit {
       next: (data) => {
         this.game = data;
 
-        //Change button name when editing
+        //Change button name and page title when editing
         this.actionBtn = 'Edit';
+        this.pageTitle = 'Edit Game';
 
         //Prefill form data
         this.addGameForm.patchValue({
@@ -114,6 +123,11 @@ export class AddGameComponent implements OnInit {
       },
       error: (error) => (this.msgError = error),
     });
+    this.isLogStatus = this.auth.isAuthenticated();
+    if(this.isLogStatus.role !== "Moderator") {
+      this.router.navigate(['home'])
+    }
+    
   }
 
   get addGameFormControls() {

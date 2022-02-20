@@ -37,7 +37,9 @@ img{
     padding-top: 10px;
     padding-bottom: 10px;
 }
-
+.buttons button:not(:last-child) {
+    margin-right: 10px;
+  }
 .review {
     color: black;
     background-color: cornsilk;

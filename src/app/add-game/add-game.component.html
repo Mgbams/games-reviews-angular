@@ -1,6 +1,6 @@
 <div class="game-list-container">
   <mat-card class="mat-card">
-    <h1>Add Game</h1>
+    <h1>{{pageTitle }}</h1>
     <mat-card-content>
       <div class="mat-elevation-z8">
         <form
@@ -97,7 +97,7 @@
           </div>
 
           <!--FILE UPLOAD-->
-          <div>
+          <div class="file-upload-container">
             <input type="file" (change)="onFileChanged($event)" />
           </div>
 
