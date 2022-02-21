@@ -10,6 +10,7 @@ import { Game } from '../model/game.model';
 import { DatePipe } from '@angular/common';
 import { isLogStatus } from '../model/log-status.model';
 import { AuthService } from '../services/auth.service';
+import { RequestApiService } from '../services/request-api.service';
 
 @Component({
   selector: 'app-add-review',
@@ -23,6 +24,7 @@ export class AddReviewComponent implements OnInit {
   private game!: Game;
   private msgError: string = '';
   public isLogStatus!: isLogStatus;
+  public idValue!: Player;
 
   constructor(
     private notification: MatSnackBar,
@@ -32,6 +34,7 @@ export class AddReviewComponent implements OnInit {
     private datepipe: DatePipe,
     private auth: AuthService,
     private router: Router,
+    private requestApiService: RequestApiService
   ) {}
   
 
@@ -40,7 +43,7 @@ export class AddReviewComponent implements OnInit {
       game: [null],
       description: [null, Validators.required],
       player_id: [null, Validators.required],
-      publication_date_time: [],
+      // publication_date_time: [],
       score: [
         null,
         Validators.compose([
@@ -69,63 +72,36 @@ export class AddReviewComponent implements OnInit {
       new Date(),
       'yyyy-MM-dd h:mm:ss'
     );
+
     this.addReviewForm.patchValue({
       game: this.game,
-      player_id: sessionStorage.getItem('currentUser'),
-      publication_date_time: currentDateTime,
+      player_id: this.idValue,
+      // publication_date_time: currentDateTime,
     });
 
     console.log(this.addReviewForm.value);
 
-    this.reviewGameService.postSingleGame(this.addReviewForm.value).subscribe({
+    this.reviewGameService.postReview(this.addReviewForm.value).subscribe({
       next: () => {
         this.successfulSubmit();
       },
       error: () => this.errorDuringSubmission(),
     });
-
-
-
   }
 
-  /*onSubmit() {
-    this.submitted = true;
-    if (this.addReviewForm.invalid) {
-      return;
-    }  
-
-    this.addReviewForm.patchValue({
-      game: this.game,
-      player_id: sessionStorage.getItem('currentUser')
-    });
-
-    console.log(this.addReviewForm.value);
-
-    this.reviewGameService.postSingleGame(this.addReviewForm.value).subscribe({
-      next: () => {
-        this.successfulSubmit();
-      },
-      error: () => this.errorDuringSubmission(),
-    });
-  }*/
-
   getGame(): void {
-    this.reviewGameService.getSingleGame(this.id).subscribe({
-      next: (data) => {
-        this.addReviewForm.patchValue({
-          game: data.name,
-          description: '',
-          score: 0,
-        });
-
-        this.game = data;
+    this.requestApiService.getSingleGame(this.id).subscribe({
+      next: (value: any) => {
+        this.game = value;
       },
-      error: (error) => (this.msgError = error),
+      error: (error) => {
+        this.router.navigate(['**']);
+      },
     });
   }
 
   successfulSubmit() {
-    this.notification.open(`Jeu successfully created`, undefined, {
+    this.notification.open(`Reviews successfully created`, undefined, {
       verticalPosition: 'top',
       horizontalPosition: 'end',
       duration: 2500,
@@ -139,7 +115,7 @@ export class AddReviewComponent implements OnInit {
   }
 
   errorDuringSubmission() {
-    this.notification.open("Game couldn't be created", undefined, {
+    this.notification.open("Reaview couldn't be created", undefined, {
       verticalPosition: 'top',
       horizontalPosition: 'end',
       duration: 2500,
