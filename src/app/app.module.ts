@@ -14,14 +14,7 @@ import { GameDescriptionComponent } from './game-description/game-description.co
 import { HttpClientModule } from '@angular/common/http';
 
 import { AddReviewComponent } from './add-review/add-review.component';
-<<<<<<< HEAD
-
-import { ReactiveFormsModule } from '@angular/forms';
-=======
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AddGameComponent } from './add-game/add-game.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
->>>>>>> 92c3d8fdc598ffac4e3e69f939db6265b11ae5ac
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { ReviewComponent } from './components/reviews/review/review.component';
@@ -63,7 +56,6 @@ import { LoginComponent } from './login/login.component';
     PaginationComponent,
     UploadImageComponent
   ],
-<<<<<<< HEAD
   imports: [
     BrowserModule,
     AppRoutingModule,
