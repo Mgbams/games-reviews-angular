@@ -22,4 +22,10 @@ export class ReviewsService {
     return this.httpClient.post<Review>(`${this.BASE_URL.addReview}`, review);
   }
 
+  // addReview: 'http://localhost:8080/api/reviews/add',
+  public postReview(review: Review): Observable<Review> {
+    return this.httpClient.post<Review>(`${this.BASE_URL.addReview}`, review);
+  }
+
+
 }

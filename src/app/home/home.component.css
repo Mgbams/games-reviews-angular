@@ -122,6 +122,7 @@ mat-card-subtitle {
   border-radius: 25px;
   position: relative;
   object-fit: cover;
+
 }
 
 .left-img p,
@@ -133,7 +134,7 @@ mat-card-subtitle {
 }
 
 .right-img {
-  background-image: url("https://images.unsplash.com/photo-1627855437629-62b298df7542?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=982&q=80");
+  background-image: url("/assets/homepage-img4.jpg");
   background-position: center;
   border: 2px solid #fdee30;
   border-radius: 25px;

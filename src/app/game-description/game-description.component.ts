@@ -64,8 +64,8 @@ export class GameDescriptionComponent implements OnInit {
   }
 
   public addReview(id: number) {
-    // this.router.navigate(['add-review', this.idGame]);
-    this.router.navigate(['/add-review']);
+    this.router.navigate(['add-review', this.idGame]);
+    //this.router.navigate(['/add-review']);
   }
 
   public modifyGame(id: number) {

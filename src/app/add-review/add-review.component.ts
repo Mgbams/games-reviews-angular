@@ -11,18 +11,35 @@ import { DatePipe } from '@angular/common';
 import { isLogStatus } from '../model/log-status.model';
 import { AuthService } from '../services/auth.service';
 
+interface LoggedInUser {
+  id: number;
+  pseudonym: string;
+  email: string;
+  role: string;
+  password?: string;
+}
+
 @Component({
   selector: 'app-add-review',
   templateUrl: './add-review.component.html',
   styleUrls: ['./add-review.component.css'],
 })
 export class AddReviewComponent implements OnInit {
+  activePlayer: LoggedInUser = {
+    id: 0,
+    email: "",
+    pseudonym: "",
+    role: "",
+    password: "default"
+  };
+
   addReviewForm!: FormGroup;
   submitted = false;
   private id!: number;
   private game!: Game;
   private msgError: string = '';
   public isLogStatus!: isLogStatus;
+  private player!: Player;
 
   constructor(
     private notification: MatSnackBar,
@@ -33,14 +50,13 @@ export class AddReviewComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
   ) {}
-  
 
   ngOnInit(): void {
     this.addReviewForm = this.formBuilder.group({
-      game: [null],
+      game_id: [null],
       description: [null, Validators.required],
       player_id: [null, Validators.required],
-      publication_date_time: [],
+      publication_date_time: [null],
       score: [
         null,
         Validators.compose([
@@ -52,8 +68,8 @@ export class AddReviewComponent implements OnInit {
     });
 
     this.isLogStatus = this.auth.isAuthenticated();
-    if(this.isLogStatus.role !== "Player") {
-      this.router.navigate(['home'])
+    if (this.isLogStatus.role !== 'Player') {
+      this.router.navigate(['home']);
     } else {
       this.id = Number(this.route.snapshot.paramMap.get('id'));
       this.getGame();
@@ -67,25 +83,38 @@ export class AddReviewComponent implements OnInit {
   submitForm() {
     let currentDateTime = this.datepipe.transform(
       new Date(),
-      'yyyy-MM-dd h:mm:ss'
+      'yyyy-MM-dd hh:mm:ss'
     );
+
+    console.log(this.addReviewForm.value);
+    this.activePlayer =  JSON.parse(JSON.stringify(sessionStorage.getItem('currentUser')));
+   // this.activePlayer.password = "Default";
+    console.log(this.activePlayer);
+
+    let player = {
+      user_type: 'Player',
+      id: 1,
+      pseudonym: 'king',
+      email: 'kingsley@gmail.com',
+      password: 'password',
+      phone_number: '',
+      birth_date: '2009-02-05',
+    };
+
     this.addReviewForm.patchValue({
-      game: this.game,
-      player_id: sessionStorage.getItem('currentUser'),
+      game_id: this.game,
+      player_id: player,
       publication_date_time: currentDateTime,
     });
 
     console.log(this.addReviewForm.value);
 
-    this.reviewGameService.postSingleGame(this.addReviewForm.value).subscribe({
+    this.reviewGameService.postReview(this.addReviewForm.value).subscribe({
       next: () => {
         this.successfulSubmit();
       },
       error: () => this.errorDuringSubmission(),
     });
-
-
-
   }
 
   /*onSubmit() {
@@ -113,12 +142,13 @@ export class AddReviewComponent implements OnInit {
     this.reviewGameService.getSingleGame(this.id).subscribe({
       next: (data) => {
         this.addReviewForm.patchValue({
-          game: data.name,
+          game_id: data.name,
           description: '',
           score: 0,
         });
 
         this.game = data;
+        console.log(this.game);
       },
       error: (error) => (this.msgError = error),
     });
@@ -145,5 +175,12 @@ export class AddReviewComponent implements OnInit {
       duration: 2500,
       panelClass: 'custom-style-error',
     });
+  }
+
+  getLoggedInPlayer() {
+    this.auth.getPlayerById(this.id).subscribe({
+      next: (data) => this.player = data,
+      error: (err) => this.msgError = err
+    })
   }
 }

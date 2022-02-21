@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { map } from 'rxjs/operators';
 export class AuthService {
   
   public logValue : any;
+  private readonly BASE_URL = environment.url;
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +25,8 @@ export class AuthService {
     return this.http.post('http://localhost:8080/api/player/login', value)
     .subscribe(result => {
       sessionStorage.setItem('currentUser', JSON.stringify(result));
-      window.location.reload();
+      //window.location.reload();
+      console.log(result);
 
     });
   }
@@ -40,5 +43,9 @@ export class AuthService {
   public Logout() {
     sessionStorage.removeItem('currentUser');
     window.location.reload();
+  }
+
+  public getPlayerById(id: number): Observable<any> {
+    return this.http.get(`${this.BASE_URL.playerPlayerById}/${id}`);
   }
 }
