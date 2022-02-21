@@ -12,12 +12,15 @@ import { isLogStatus } from '../model/log-status.model';
 import { AuthService } from '../services/auth.service';
 import { RequestApiService } from '../services/request-api.service';
 
-interface LoggedInUser {
-  id: number;
-  pseudonym: string;
-  email: string;
-  role: string;
-  password?: string;
+export interface Reviews {
+  player: {
+    id: number;
+  };
+  game: {
+    id: number;
+  };
+  description: string;
+  score: number;
 }
 
 @Component({
@@ -26,14 +29,6 @@ interface LoggedInUser {
   styleUrls: ['./add-review.component.css'],
 })
 export class AddReviewComponent implements OnInit {
-  activePlayer: LoggedInUser = {
-    id: 0,
-    email: "",
-    pseudonym: "",
-    role: "",
-    password: "default"
-  };
-
   addReviewForm!: FormGroup;
   submitted = false;
   private id!: number;
@@ -42,6 +37,18 @@ export class AddReviewComponent implements OnInit {
   public isLogStatus!: isLogStatus;
   private player!: Player;
   public idValue!: Player;
+
+  //reviews initialization
+  review: Reviews = {
+    player:  {
+      id: 0
+    },
+    game:  {
+      id: 0
+    },
+    score: 0,
+    description: ''
+  };
 
   constructor(
     private notification: MatSnackBar,
@@ -72,11 +79,13 @@ export class AddReviewComponent implements OnInit {
     });
 
     this.isLogStatus = this.auth.isAuthenticated();
+    console.log('player_id' + this.isLogStatus.id);
     if (this.isLogStatus.role !== 'Player') {
       this.router.navigate(['home']);
     } else {
-      this.id = Number(this.route.snapshot.paramMap.get('id'));
-      this.getGame();
+      if (Number(this.route.snapshot.paramMap.get('id'))) {
+        this.review.game.id = Number(this.route.snapshot.paramMap.get('id'));
+      };
     }
   }
 
@@ -89,49 +98,18 @@ export class AddReviewComponent implements OnInit {
       new Date(),
       'yyyy-MM-dd hh:mm:ss'
     );
-    console.log(this.addReviewForm.value);
-    this.activePlayer =  JSON.parse(JSON.stringify(sessionStorage.getItem('currentUser')));
-   // this.activePlayer.password = "Default";
-    console.log(this.activePlayer);
 
-    let player = {
-      user_type: 'Player',
-      id: 1,
-      pseudonym: 'king',
-      email: 'kingsley@gmail.com',
-      password: 'password',
-      phone_number: '',
-      birth_date: '2009-02-05',
-    };
+    //this.review.game_id = this.id;
+    this.review.player.id = this.isLogStatus.id;
+    this.review.description = this.addReviewForm.get('description')?.value;
+    this.review.score = this.addReviewForm.get('score')?.value;
 
-    this.addReviewForm.patchValue({
-      game_id: this.game,
-      player_id: player,
-      publication_date_time: currentDateTime,
-    });
-
-    console.log(this.addReviewForm.value);
-
-    this.reviewGameService.postReview(this.addReviewForm.value).subscribe({
+    console.log(this.review);
+    this.reviewGameService.postReview(this.review).subscribe({
       next: () => {
         this.successfulSubmit();
       },
       error: () => this.errorDuringSubmission(),
-    });
-  }
-
-  getGame(): void {
-    this.reviewGameService.getSingleGame(this.id).subscribe({
-      next: (data) => {
-        this.addReviewForm.patchValue({
-          game_id: data.name,
-          description: '',
-          score: 0,
-        });
-
-        this.game = data;
-        console.log(this.game);
-      },
     });
   }
 
@@ -158,10 +136,4 @@ export class AddReviewComponent implements OnInit {
     });
   }
 
-  getLoggedInPlayer() {
-    this.auth.getPlayerById(this.id).subscribe({
-      next: (data) => this.player = data,
-      error: (err) => this.msgError = err
-    })
-  }
 }

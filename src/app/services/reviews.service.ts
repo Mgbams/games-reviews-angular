@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Reviews } from '../add-review/add-review.component';
 import { Game } from '../model/game.model';
 import { Review } from '../model/reviews.model';
 
@@ -23,7 +24,7 @@ export class ReviewsService {
   }*/
 
   // addReview: 'http://localhost:8080/api/reviews/add',
-  public postReview(review: Review): Observable<Review> {
+  public postReview(review: Reviews): Observable<Review> {
     return this.httpClient.post<Review>(`${this.BASE_URL.addReview}`, review);
   }
 
