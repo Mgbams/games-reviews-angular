@@ -1,7 +1,7 @@
 .homepage-welcome-image {
   height: 65vh;
   width: 100vw;
-  background-image: url("https://images.unsplash.com/photo-1515687652280-bf0bb698562a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+  background-image: url("/assets/homepage-img2.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;

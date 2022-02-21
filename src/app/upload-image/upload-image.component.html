@@ -10,7 +10,7 @@
         >
           <!--FILE UPLOAD-->
           <div class="file-upload-container">
-            <input type="file" (change)="onFileChanged($event)" formControlName="picture"/>
+            <input type="file" (change)="onFileChanged($event)" formControlName="picture" accept="image/png, image/gif, image/jpeg" />
           </div>
 
           <div>
