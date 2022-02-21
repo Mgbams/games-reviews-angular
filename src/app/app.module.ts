@@ -32,6 +32,7 @@ import { ListAvisComponent } from './list-avis/list-avis.component';
 import { NotificationComponent } from './notification/notification.component';
 import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
 import { LoginComponent } from './login/login.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
+    SlickCarouselModule,
     HttpClientModule,
   ],
   providers: [

@@ -10,7 +10,12 @@
   </div>
 </div>
 
-<mat-grid-list cols="4" rowHeight="150px" gutterSize="20" class="slider-container">
+<mat-grid-list
+  cols="4"
+  rowHeight="150px"
+  gutterSize="20"
+  class="slider-container"
+>
   <mat-grid-tile colspan="3" rowspan="1" class="left-img">
     <p>THE NEW ORSYS CHALLENGE ROLLS OUT</p>
   </mat-grid-tile>
@@ -30,9 +35,9 @@
       <mat-card class="game-card">
         <img
           mat-card-image
-          src="{{serverImgUrl}}{{game.picture}}"
+          src="{{ serverImgUrl }}{{ game.picture }}"
           alt="{{ game.name }}"
-          class="img"
+          class="{{ game.name }}"
         />
         <mat-card-content class="game-card-content">
           <div>
@@ -57,5 +62,9 @@
     </mat-grid-tile>
   </mat-grid-list>
 
-  <app-paginator [pageSize]="pageSize" (ChangePageOnClick)="nextPage($event)" [length]="length" ></app-paginator>
+  <app-paginator
+    [pageSize]="pageSize"
+    (ChangePageOnClick)="nextPage($event)"
+    [length]="length"
+  ></app-paginator>
 </div>
