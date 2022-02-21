@@ -8,18 +8,23 @@
         <div class="text_detail">
             <div class="genre">
                 <p>
-                     Genre : {{this.response.genre.name}}
+                     Genre : <br>
+                     {{this.response.genre.name}}
                 </p>
             </div>
             <div class="business">
                 <p>
-                    Style de gameplay : {{this.response.businessModel.name}} publié par {{this.response.publisher.name}}
+                    Style de gameplay :<br>
+                     {{this.response.businessModel.name}} publié par {{this.response.publisher.name}}
                 </p>
             </div>
-            <div class="platforms_div">
-                <p>Disponible sur les plateforms : </p> 
-                <div *ngFor="let platforms of this.response.platforms" >
-                    {{platforms.name}}
+            <div >
+                <p>Disponible sur les plateforms : </p><br>
+                <div class="platforms_div">
+                    <div *ngFor="let platforms of this.response.platforms" style="margin-right: 10px;">
+                        {{platforms.name}}
+                    </div>
+
                 </div>
             </div>
             <div class="description">
@@ -44,7 +49,7 @@
     </div>
     <div class="review_div">
         <h1> Review : </h1>
-        <div *ngIf="this.reviews.length > 0; else elseBlock">
+        <div *ngIf="this.reviews && this.reviews.length > 0; else elseBlock">
             <div *ngFor="let review of this.reviews" class="review">
                 <!-- <div class="review_info">
                     <p>{{review.name}}</p>
