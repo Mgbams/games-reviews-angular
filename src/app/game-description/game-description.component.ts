@@ -2,6 +2,10 @@ import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Page } from '../components/page';
+import { Pageable } from '../components/pagination/pagination.component';
+import { Review } from '../components/review';
+import { ReviewsService } from '../components/reviews/reviews.service';
 import { AddGameService } from '../services/add-game.service';
 import { AuthService } from '../services/auth.service';
 import { RequestApiService } from '../services/request-api.service';
@@ -16,6 +20,8 @@ export class GameDescriptionComponent implements OnInit {
   serverImgUrl = 'http://localhost:8080/images/';
   public idGame: any;
   public response: any;
+  public pageable!: Pageable;
+  public reviews!: Review[];
   public isLogStatus = {
     id: '',
     pseudonym: '',
@@ -46,6 +52,7 @@ export class GameDescriptionComponent implements OnInit {
     private notification: MatSnackBar,
     private dialogService: DialogService,
     private homePageService: AddGameService,
+    private serviceReview: ReviewsService
   ) {
     this.idGame = Number(this.route.snapshot.paramMap.get('idGame'));
 
@@ -58,18 +65,35 @@ export class GameDescriptionComponent implements OnInit {
       },
     });
 
-    
+    this.pageable = new Pageable();
   }
 
   ngOnInit(): void {
     this.isLogStatus = this.auth.isAuthenticated();
+    if(this.idGame) {
+      this.getValidatedReviews(this.idGame);
+    }
+  }
+
+  private getValidatedReviews(id: number): void {
+    this.serviceReview.getValidatedReviews(this.pageable.number, this.pageable.size, 'publicationDateTime', true, id)
+      .subscribe({
+        next : value => {
+          this._mapPage(value);
+        },
+        error : err => console.error(err.error.message)
+    });
+  }
+
+  private _mapPage(value: Page): void {
+    this.reviews = value.content;
+    this.pageable.number = value.number;
+    this.pageable.size = value.size;
+    this.pageable.totalElements = value.totalElements;
   }
 
   public addReview(id: number) {
     this.router.navigate(['add-review', this.idGame]);
-    //this.router.navigate(['/add-review']);
-    // this.router.navigate(['add-review', this.idGame]);
-    //this.router.navigate(['/add-review', id]);
   }
 
   public modifyGame(id: number) {

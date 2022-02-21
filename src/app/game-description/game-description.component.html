@@ -44,15 +44,38 @@
     </div>
     <div class="review_div">
         <h1> Review : </h1>
-        <div *ngFor="let review of this.reviewGame" class="review">
-            <div class="review_info">
-                <p>{{review.name}}</p>
-                <p>{{review.datePublication}}</p>
-                <p>{{review.score}}</p>
+        <div *ngIf="this.reviews.length > 0; else elseBlock">
+            <div *ngFor="let review of this.reviews" class="review">
+                <!-- <div class="review_info">
+                    <p>{{review.name}}</p>
+                    <p>{{review.datePublication}}</p>
+                    <p>{{review.score}}</p>
+                </div>
+                <div>
+                    <p>{{review.description}}</p>
+                </div> -->
+    
+                <mat-card class="review">
+                    <mat-card-title class="flex-between">
+                      <p>{{ review.game.name }}</p>
+                      <p>Score: {{ review.score }}/20</p>
+                    </mat-card-title>
+                    <mat-divider inset></mat-divider>
+                    <mat-card-content>
+                    <mat-card-subtitle class="flex-between">
+                      <p>Player: {{ review.player.pseudonym }}</p>
+                      <p>Date: {{ review.publicationDateTime | date:'medium' }}</p>
+                    </mat-card-subtitle>
+                      <mat-card-content>{{ review.description }}</mat-card-content>
+                    </mat-card-content>
+                  </mat-card>
             </div>
-            <div>
-                <p>{{review.description}}</p>
-            </div>
+
         </div>
+        <ng-template #elseBlock>
+            <h3>
+                No review has been validated on this game.
+            </h3>
+        </ng-template>
     </div>
 </div>
