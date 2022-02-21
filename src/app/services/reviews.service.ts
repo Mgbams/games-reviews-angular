@@ -18,7 +18,7 @@ export class ReviewsService {
     return this.httpClient.get(`${this.BASE_URL.gameBaseUrl}/${id}`);
   }
 
-  public postSingleGame(review: Review): Observable<Review> {
+  public postReview(review: Review): Observable<Review> {
     return this.httpClient.post<Review>(`${this.BASE_URL.addReview}`, review);
   }
 
