@@ -17,14 +17,13 @@ const routes: Routes = [
     {path: 'game-lists', component: ListJeuxComponent, canActivate:[AuthGuardGuard]},
     {path: 'edit-game/:id', component: AddGameComponent, canActivate:[AuthGuardGuard]},
     {path: 'review-lists', component: ListAvisComponent, canActivate:[AuthGuardGuard]},
-    {path: 'add-review', component: AddReviewComponent, canActivate:[AuthGuardGuard]},
+    {path: 'add-review/:id', component: AddReviewComponent, canActivate:[AuthGuardGuard]},
     {path: 'add-game', component: AddGameComponent, canActivate:[AuthGuardGuard]},
     {path: 'uploadImage/:id', component: UploadImageComponent, canActivate:[AuthGuardGuard]},
     {path: 'reviews/moderate', component: ModeratorReviewsComponent, canActivate:[AuthGuardGuard]},
     {path: 'gameDescription/:idGame', component: GameDescriptionComponent},
     {path: 'paginator', component: PaginatorComponent},
     {path: '', redirectTo: '/home', pathMatch: "full"},
-    {path: '**', pathMatch: 'full', component: PageNotFoundComponent },
     {path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
 
