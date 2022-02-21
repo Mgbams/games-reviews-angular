@@ -1,14 +1,16 @@
 .game-list-container {
   padding-top: 7vh;
+  width: 80%;
+  margin: auto;
 }
 
-.game-list-card {
+/*.game-list-card {
   width: 70vw;
   margin: auto;
   color: white;
   background-color: rgba(253,238,48,0.6);
   border-radius: 25px;
-}
+}*/
 
 mat-card-title {
   text-align: center;
@@ -24,21 +26,21 @@ table {
 }
 
 .operations-button {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 th {
-    width: 25%;
-    font-size: 1.2rem;
+  width: 25%;
+  font-size: 1.2rem;
 }
 
 .edit-button {
-    color: rgba(0, 128, 0, 0.712);
+  color: rgba(0, 128, 0, 0.712);
 }
 
 .add-game-button {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .game-list-card {
@@ -76,10 +78,41 @@ th {
   color: white;
   font-size: 16px;
 }
-  
+
+.export-container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.game-lists-header {
+  text-align: center;
+  color: white;
+}
+
+.standard {
+  background-color: goldenrod;
+  color: white !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: green !important;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: beige !important;
+}
+
+.inner-container {
+  padding-bottom: 10px;
+}
+
 @media screen and (max-width: 700px) {
-    th {
-        font-size: 16px;
-    }
-      
+  th {
+    font-size: 16px;
+  }
 }

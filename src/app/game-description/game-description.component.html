@@ -1,6 +1,6 @@
 <div *ngIf="this.response" class="main_div">
     <div class="title_game">
-        <h1>
+        <h1 class="title title-head">
             {{this.response.name}}
         </h1>
     </div>
@@ -8,18 +8,17 @@
         <div class="text_detail">
             <div class="genre">
                 <p>
-                     Genre : <br>
-                     {{this.response.genre.name}}
+                     <span class="title">Genre :</span> &nbsp;{{this.response.genre.name}}
                 </p>
             </div>
             <div class="business">
                 <p>
-                    Style de gameplay :<br>
-                     {{this.response.businessModel.name}} publié par {{this.response.publisher.name}}
+                    <span class="style-of-play">Style de gameplay </span>:<br>
+                     <span>{{this.response.businessModel.name}} publié par {{this.response.publisher.name}}</span>
                 </p>
             </div>
             <div >
-                <p>Disponible sur les plateforms : </p><br>
+                <p class="platforms">Disponible sur les plateforms : </p><br>
                 <div class="platforms_div">
                     <div *ngFor="let platforms of this.response.platforms" style="margin-right: 10px;">
                         {{platforms.name}}
@@ -28,7 +27,7 @@
                 </div>
             </div>
             <div class="description">
-                <h3>Description : </h3>
+                <h3 class="description-header">Description : </h3>
                 <p>
                     {{this.response.description}}
                 </p>
@@ -48,7 +47,7 @@
         </div>
     </div>
     <div class="review_div">
-        <h1> Review : </h1>
+        <h1 class="review-header"> Review : </h1>
         <div *ngIf="this.reviews && this.reviews.length > 0; else elseBlock">
             <div *ngFor="let review of this.reviews" class="review">
                 <!-- <div class="review_info">

@@ -1,6 +1,6 @@
 <div class="homepage-welcome-image">
   <div class="welcome-page-title">
-    <h1>WORLD OF TANKS</h1>
+    <h1 class = "page-title">WORLD OF TANKS</h1>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
       voluptas fugit asperiores sunt iste repudiandae illum. Laborum dolores
@@ -24,7 +24,7 @@
   </mat-grid-tile>
 </mat-grid-list>
 
-<h3 class="home-page-game-lists">FIRESTONE AWAKENING</h3>
+<h3 class="home-page-game-lists">FEATURED GAME LISTS</h3>
 
 <div class="grid-container" *ngIf="games">
   <mat-grid-list [cols]="(cardsLayout | async)?.gridColumns" rowHeight="350px">
@@ -66,11 +66,10 @@
             <p>
               <button
                 mat-raised-button
-                color="warn"
                 (click)="moreDetails(game.id)"
                 class="info-button"
               >
-                More Info
+                More Info ...
               </button>
             </p>
             <p class="button-span">

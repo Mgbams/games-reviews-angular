@@ -32,10 +32,10 @@ export class ListJeuxComponent implements OnInit, AfterViewInit {
 
   games: Game[] = [];
   msgError = '';
-  public isLogStatus! : isLogStatus;
+  public isLogStatus!: isLogStatus;
 
   displayedColumns: string[] = ['image', 'name', 'publisher', 'operations'];
-  dataSource = new MatTableDataSource<Game>(this.games);
+  dataSource!: MatTableDataSource<Game>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -50,19 +50,21 @@ export class ListJeuxComponent implements OnInit, AfterViewInit {
     public dialog: MatDialog,
     private auth: AuthService,
     private router: Router
-  ) {}
+  ) {  }
 
   ngOnInit(): void {
     this.getPageableGames();
     this.isLogStatus = this.auth.isAuthenticated();
-    if(this.isLogStatus.role !== "Moderator") {
-      this.router.navigate(['home'])
+    if (this.isLogStatus.role !== 'Moderator') {
+      this.router.navigate(['home']);
     }
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
+    this.dataSource = new MatTableDataSource(this.games)
   }
 
   exportAsXLSX(): void {
@@ -102,6 +104,7 @@ export class ListJeuxComponent implements OnInit, AfterViewInit {
       .getPageableGames(this.initialPageStart, this.initialPageEnd)
       .subscribe({
         next: (data) => {
+          this.dataSource = new MatTableDataSource(data['content']);
           this.games = data['content'];
           this.pageSizeOptions = data['pageable'];
           this.length = data.totalElements;
@@ -142,7 +145,6 @@ export class ListJeuxComponent implements OnInit, AfterViewInit {
 
   goToReviewList() {
     this.route.navigate(['reviews/moderate']);
-
   }
   deletGame(game: Game) {
     this.openOnDeleteRequest(game);

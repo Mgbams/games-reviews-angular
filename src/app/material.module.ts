@@ -29,7 +29,6 @@ const MaterialComponents = [
   MatIconModule,
   MatToolbarModule,
   MatDialogModule,
-  MatInputModule,
   MatFormFieldModule,
   MatSnackBarModule,
   MatDatepickerModule,
@@ -38,6 +37,7 @@ const MaterialComponents = [
   MatTableModule,
   MatSortModule,
   MatSelectModule,
+  MatInputModule,
 ];
 
 @NgModule({

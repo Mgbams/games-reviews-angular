@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private auth: AuthService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private notification: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -42,10 +44,12 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.auth.authenticate(this.loginForm.value);
-    this.onClose();
+  
+   // this.onClose();
   }
 
   onClose() {
     this.dialogRef.close();
   }
+
 }

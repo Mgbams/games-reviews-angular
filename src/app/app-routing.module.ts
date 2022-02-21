@@ -22,6 +22,9 @@ const routes: Routes = [
     {path: 'reviews/moderate', component: ModeratorReviewsComponent, canActivate:[AuthGuardGuard]},
     {path: 'gameDescription/:idGame', component: GameDescriptionComponent},
     {path: 'uploadImage/:id', component: UploadImageComponent},
+
+    {path: 'list-avis', component: ListAvisComponent},
+
     {path: '', redirectTo: '/home', pathMatch: "full"},
     {path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
