@@ -17,14 +17,14 @@
   class="slider-container"
 >
   <mat-grid-tile colspan="3" rowspan="1" class="left-img">
-    <p>THE NEW ORSYS CHALLENGE ROLLS OUT</p>
+    <p>MOST ADDICTIVE GAMES</p>
   </mat-grid-tile>
   <mat-grid-tile colspan="1" rowspan="1" class="right-img"
-    ><p>NEW GAME IN TOWN</p>
+    ><p>MOST ADDICTIVE GAMES</p>
   </mat-grid-tile>
 </mat-grid-list>
 
-<h3 class="home-page-game-lists">NEW GAMES IN THE BLOCK</h3>
+<h3 class="home-page-game-lists">FIRESTONE AWAKENING</h3>
 
 <div class="grid-container" *ngIf="games">
   <mat-grid-list [cols]="(cardsLayout | async)?.gridColumns" rowHeight="350px">
@@ -33,29 +33,50 @@
       *ngFor="let game of games"
     >
       <mat-card class="game-card">
-        <img
-          mat-card-image
-          src="{{ serverImgUrl }}{{ game.picture }}"
-          alt="{{ game.name }}"
-          class="{{ game.name }}"
-        />
+        <div class="img-container">
+          <img
+            mat-card-image
+            src="{{ serverImgUrl }}{{ game.picture }}"
+            alt="{{ game.name | titlecase }}"
+            class="{{ game.name }}"
+          />
+        </div>
         <mat-card-content class="game-card-content">
           <div>
-            <mat-card-title>{{ game.name }}</mat-card-title>
-            <mat-card-subtitle>{{ game.genre.name }}</mat-card-subtitle>
-            <div class="mat-card-actions">
+            <p>
+              <span class="game-card-span">Name: </span>&nbsp;{{ game.name }}
+            </p>
+            <div class="pegi-container">
+              <p>
+                <span class="game-card-span">Genre:</span>&nbsp;{{
+                  game.genre.name
+                }}
+              </p>
+              <p>
+                <span class="pegi"
+                  ><img
+                    src="assets/{{ game.classification.id }}.jpg"
+                    alt="pegi image"
+                /></span>
+              </p>
+            </div>
+          </div>
+
+          <div class="mat-card-actions">
+            <p>
               <button
                 mat-raised-button
                 color="warn"
                 (click)="moreDetails(game.id)"
+                class="info-button"
               >
                 More Info
               </button>
-              <p>
-                <span>5/20</span
-                ><mat-icon class="notes-stars">star_outline</mat-icon>
-              </p>
-            </div>
+            </p>
+            <p class="button-span">
+              <span>5/20</span
+              ><mat-icon class="notes-stars">star_outline</mat-icon>
+            </p>
           </div>
         </mat-card-content>
       </mat-card>

@@ -111,6 +111,7 @@ export class HomeComponent implements OnInit {
           this.pageSizeOptions = data['pageable'];
           this.length = data.totalElements;
           this.pageSize = data.totalPages;
+          console.log(this.games);
         },
         error: (error) => (this.msgError = error),
       });
