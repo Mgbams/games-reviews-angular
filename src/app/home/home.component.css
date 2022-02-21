@@ -144,11 +144,6 @@ mat-card-subtitle {
   color: #fdee30;
 }
 
-mat-grid-tile {
-  display: flex !important;
-  flex-direction: column;
-}
-
 .game-card {
   display: flex;
   flex-direction: column;

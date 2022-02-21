@@ -67,7 +67,6 @@ export class AddReviewComponent implements OnInit {
       description: [null, Validators.required],
       player_id: [null, Validators.required],
       publication_date_time: [null],
-      // publication_date_time: [],
       score: [
         null,
         Validators.compose([
@@ -128,7 +127,7 @@ export class AddReviewComponent implements OnInit {
   }
 
   errorDuringSubmission() {
-    this.notification.open("Reaview couldn't be created", undefined, {
+    this.notification.open("Review couldn't be created", undefined, {
       verticalPosition: 'top',
       horizontalPosition: 'end',
       duration: 2500,

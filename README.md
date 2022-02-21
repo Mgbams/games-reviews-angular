@@ -1,28 +1,28 @@
-# ProjetAvis
+# GAME Ref
+Projet de soutenance final pour la formation ORSYS.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.1.
+---
+## Participants
+- MGBAMS Kingsley
+- NOVAK Oleg
+- KHALED Wissem 
 
-## Development server
+---
+## Techologies utilisés
+- Git
+- Jira
+- Pencil
+- Figma
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+---
+## Technologies utilisés
+- Angular
+- Spring Boot
+- Java
+- SQL
+- Hibernate
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-Test new commit as i just added it
+---
+## Objectif
+Le but de cette application est de créer une application de listes de jeux videos pour lesquels 
+les players peuvent ajouter des notes.

@@ -24,7 +24,6 @@ export class ListJeuxComponent implements OnInit, AfterViewInit {
   length!: number;
   excelTitle = 'gameLists';
   dataToExport: any;
-
   serverImgUrl = 'http://localhost:8080/images/';
 
   // Pagination initial data

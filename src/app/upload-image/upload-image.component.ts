@@ -1,10 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddGameService } from '../services/add-game.service';
@@ -31,7 +26,6 @@ export class UploadImageComponent implements OnInit {
     private addGameService: AddGameService,
     private notification: MatSnackBar,
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
     private router: Router
   ) {}
 

@@ -3,10 +3,12 @@
   margin: auto;
 }
 
+.game-list-container  {
+  margin-top: 30px;
+}
+
 .game-list-container .mat-card h1 {
   text-align: center;
-  margin-top: 10px;
-  margin-top: 5px;
   font-size: 1.7rem;
   font-weight: bold;
 }

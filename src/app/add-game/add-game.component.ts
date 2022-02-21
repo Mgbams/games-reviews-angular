@@ -125,7 +125,6 @@ export class AddGameComponent implements OnInit {
         });
 
         this.game = data;
-        console.log(this.game);
       },
       error: (error) => (this.msgError = error),
     });
@@ -141,21 +140,8 @@ export class AddGameComponent implements OnInit {
 
   onSubmit() {
     let publishedDate = this.datepipe.transform(new Date(), 'yyyy-MM-dd');
-
-    // TODO when project is
-    // initialization of variables
-    let moderator = {
-      user_type: 'moderator',
-      id: 1,
-      pseudonym: 'king',
-      email: 'kingsley@gmail.com',
-      password: 'password',
-      phone_number: '3378245679',
-      birth_date: '2009-02-05',
-    };
-
     this.addGameForm.patchValue({
-      moderatorId: moderator,
+      moderatorId: this.isLogStatus,
       releaseDate: publishedDate,
       picture: this.selectedFile.name,
     });
@@ -170,8 +156,6 @@ export class AddGameComponent implements OnInit {
   }
 
   createGame() {
-    console.log(this.addGameForm.value);
-
     this.addGameService.postGame(this.addGameForm.value).subscribe({
       next: () => {
         this.successfulSubmit();
@@ -183,29 +167,6 @@ export class AddGameComponent implements OnInit {
   }
 
   updateGame(): void {
-    console.log(this.addGameForm.value);
-    const classification = this.getClassificationByName(
-      this.addGameForm.get('classification')?.value.trim()
-    );
-
-    const publisher = this.getPublisherByName(
-      this.addGameForm.get('publisher')?.value
-    );
-
-    const genre = this.getGenreByName(this.addGameForm.get('genre')?.value);
-
-    const businessModel = this.getBusinessModelByName(
-      this.addGameForm.get('businessModel')?.value
-    );
-
-    // patch values before updating
-    this.addGameForm.patchValue({
-      publisher: publisher,
-      genre: genre,
-      classification: classification,
-      businessModel: businessModel,
-    });
-
     console.log(this.addGameForm.value);
   
     this.addGameService
@@ -329,35 +290,4 @@ export class AddGameComponent implements OnInit {
     return uploadImageData;
   }
 
-  // Get by name
-  getClassificationByName(name: string): void {
-    this.addGameService.getClassificationByName(name).subscribe({
-      next: (res) => (this.classificationByName = res),
-      error: (err) => (this.msgError = err),
-    });
-  }
-
-  getPublisherByName(name: string): void {
-    this.addGameService.getClassificationByName(name).subscribe({
-      next: (res) => (this.publisherByName = res),
-      error: (err) => (this.msgError = err),
-    });
-  }
-
-  getGenreByName(name: string): void {
-    this.addGameService.getClassificationByName(name).subscribe({
-      next: (res) => (this.genreByName = res),
-      error: (err) => (this.msgError = err),
-    });
-  }
-  getBusinessModelByName(name: string): void {
-    this.addGameService.getClassificationByName(name).subscribe({
-      next: (res) => {
-        this.businessModelByName = res;
-        console.log(res);
-        console.log(this.businessModelByName);
-      },
-      error: (err) => (this.msgError = err),
-    });
-  }
 }

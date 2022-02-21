@@ -1,18 +1,29 @@
-<mat-card class="review">
-  <mat-card-title class="flex-between">
-    <p>{{ review.game.name }}</p>
-    <p>Score: {{ review.score }}/20</p>
-  </mat-card-title>
-  <mat-divider inset></mat-divider>
-  <mat-card-content>
-  <mat-card-subtitle class="flex-between">
-    <p>Player: {{ review.player.pseudonym }}</p>
-    <p>Date: {{ review.publicationDateTime | date:'medium' }}</p>
-  </mat-card-subtitle>
-    <mat-card-content>{{ review.description }}</mat-card-content>
-  </mat-card-content>
-  <mat-card-actions align="end" *ngIf="moderatorId">
-    <button mat-raised-button color="primary" *ngIf="!review.validated" (click)="validateReview()">Validate</button>
-    <button mat-raised-button color="warn" (click)="deleteReview()">Delete</button>
-  </mat-card-actions>
-</mat-card>
+<div class="card-container">
+  <mat-card class="review">
+    <mat-card-title class="flex-between">
+      <p>{{ review.game.name }}</p>
+      <p>Score: {{ review.score }}/20</p>
+    </mat-card-title>
+    <mat-divider inset></mat-divider>
+    <mat-card-content>
+      <mat-card-subtitle class="flex-between">
+        <p>Player: {{ review.player.pseudonym }}</p>
+        <p>Date: {{ review.publicationDateTime | date: "medium" }}</p>
+      </mat-card-subtitle>
+      <mat-card-content>{{ review.description }}</mat-card-content>
+    </mat-card-content>
+    <mat-card-actions *ngIf="moderatorId">
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="!review.validated"
+        (click)="validateReview()"
+      >
+        Validate
+      </button>
+      <button mat-raised-button color="warn" (click)="deleteReview()">
+        Delete
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
