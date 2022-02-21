@@ -18,12 +18,4 @@ export class RequestApiService {
     );
   }
 
-  public getReviews(id: number): Observable<any> {
-    const options =  { params: new HttpParams().set('gameId', id) } ;
-    return this.http.get('http://localhost:80801/api/reviews', options)
-    .pipe(
-      catchError( error => of(`Bad Primise: ${error}`)
-        )
-    );
-  }
 }
