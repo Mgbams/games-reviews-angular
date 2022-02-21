@@ -17,7 +17,10 @@ const routes: Routes = [
     {path: 'game-lists', component: ListJeuxComponent, canActivate:[AuthGuardGuard]},
     {path: 'edit-game/:id', component: AddGameComponent, canActivate:[AuthGuardGuard]},
     {path: 'review-lists', component: ListAvisComponent, canActivate:[AuthGuardGuard]},
+<<<<<<< HEAD
     //{path: 'add-review', component: AddReviewComponent, canActivate:[AuthGuardGuard]},
+=======
+>>>>>>> 9330ec666c0dea0f33401a64c3076950b5b0470f
     {path: 'add-review/:id', component: AddReviewComponent, canActivate:[AuthGuardGuard]},
     {path: 'add-game', component: AddGameComponent, canActivate:[AuthGuardGuard]},
     {path: 'uploadImage/:id', component: UploadImageComponent, canActivate:[AuthGuardGuard]},

@@ -57,6 +57,8 @@ export class GameDescriptionComponent implements OnInit {
         this.router.navigate(['**']);
       },
     });
+
+    
   }
 
   ngOnInit(): void {
@@ -66,10 +68,12 @@ export class GameDescriptionComponent implements OnInit {
   public addReview(id: number) {
     this.router.navigate(['add-review', this.idGame]);
     //this.router.navigate(['/add-review']);
+    // this.router.navigate(['add-review', this.idGame]);
+    //this.router.navigate(['/add-review', id]);
   }
 
   public modifyGame(id: number) {
-    console.log(id);
+    this.router.navigate(['/edit-game', id]);
   }
   public deleteGame(id: number) {
     console.log(id);
