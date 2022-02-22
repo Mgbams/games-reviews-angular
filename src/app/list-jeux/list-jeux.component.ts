@@ -63,7 +63,6 @@ export class ListJeuxComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-
     this.dataSource = new MatTableDataSource(this.games)
   }
 
@@ -105,6 +104,7 @@ export class ListJeuxComponent implements OnInit, AfterViewInit {
       .subscribe({
         next: (data) => {
           this.dataSource = new MatTableDataSource(data['content']);
+          this.dataSource.sort = this.sort;
           this.games = data['content'];
           this.pageSizeOptions = data['pageable'];
           this.length = data.totalElements;
